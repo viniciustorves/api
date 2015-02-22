@@ -8,16 +8,13 @@ class ProvisionWorker
     # TODO: Get Enabled Setting for ManageIQ
     # manage_iq = Setting.where(name: 'Manage IQ').first.id
     # miq_enabled = SettingField.where(setting_id: manage_iq, label: 'Enabled').first.value
-    miq_enabled = 'true'
-    if miq_enabled == 'true' # Temporarily default to true while fog.io is not integrated
+    miq_enabled = 'false'
+    cloud = Cloud.where(id: order_item.cloud_id).first.name.capitalize
+    if miq_enabled == 'true' && cloud == 'Aws' # Temporarily default to true while fog.io is not integrated
       miq_provision(order_item)
     else
-      cloud = Cloud.where(id: order_item.cloud_id).first.name
-      # TODO: Provision according to cloud provider using fog.io
-      case cloud
-      when 'AWS'
-      when 'Azure'
-      end
+      provider = "#{cloud}Fog".constantize
+      provider.new.provision(order_item)
     end
   end
 
