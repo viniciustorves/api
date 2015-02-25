@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # Auth
   devise_for :staff, controllers: { sessions: 'sessions' }
 
+  get 'saml/init', to: 'saml#init'
+  post 'saml/consume', to: 'saml#consume'
+
   # Alerts Routes
   resources :alerts, defaults: { format: :json } do
     collection do
@@ -77,26 +80,20 @@ Rails.application.routes.draw do
   resources :clouds, except: [:edit, :new], defaults: { format: :json }
 
   # Project Routes
-  resources :projects, defaults: { format: :json, methods: %w(domain url state state_ok problem_count account_number resources resources_unit cpu hdd ram status monthly_spend order_history) }, only: [:show]
-  resources :projects, defaults: { format: :json, methods: %w(domain url state state_ok problem_count account_number resources resources_unit cpu hdd ram status monthly_spend) }, only: [:index]
-  resources :projects, defaults: { format: :json }, except: [:index, :show, :edit, :new] do
-    member do
-      get :staff, to: 'projects#staff', as: :staff_for
-      match 'staff/:staff_id' => 'projects#add_staff', :via => :post, as: :add_staff_to
-      match 'staff/:staff_id' => 'projects#remove_staff', :via => :delete, as: :remove_staff_from
-
-      match 'approvals' => 'projects#approvals', :via => :get, as: :project_approvals
-      match 'approve' => 'projects#approve', :via => :post, as: :approve_project
-      match 'reject' => 'projects#reject', :via => :post, as: :reject_project
-    end
-  end
+  resources :projects, defaults: { format: :json }, except: [:edit, :new]
+  get 'projects/:project_id/staff' => 'project_staff#index', as: :project_staff_index
+  post 'projects/:project_id/staff/:id' => 'project_staff#create', as: :project_staff
+  delete 'projects/:project_id/staff/:id' => 'project_staff#destroy'
+  get 'projects/:project_id/approvals' => 'project_approvals#index', as: :project_approvals
+  post 'projects/:project_id/approve' => 'project_approvals#update', as: :approve_project
+  delete 'projects/:project_id/reject' => 'project_approvals#destroy', as: :reject_project
 
   # ProjectQuestion Routes
   resources :project_questions, except: [:edit, :new], defaults: { format: :json }
 
   # Admin Settings
-  resources :settings, defaults: { format: :json, includes: %w(setting_fields)  }, only: [:index, :update, :show, :edit, :new, :destroy]
-  resources :settings, defaults: { format: :json, includes: %w(setting_fields)  }, only: [:show], param: :name
+  resources :settings, defaults: { format: :json, includes: %w(setting_fields)  }, only: [:index, :update, :show, :destroy]
+  resources :settings, defaults: { format: :json, includes: %w(setting_fields)  }, only: [:show], param: :hid
 
   # Automate Routes
   resources :automate, only: [] do
