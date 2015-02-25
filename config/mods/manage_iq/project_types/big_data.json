@@ -1,0 +1,52 @@
+{
+  "name": "Big Data",
+  "description": "Available Big Data Solutions",
+  "questions": [
+    [
+      {
+        "label": "RAM",
+        "field_type": "text",
+        "placeholder": "Size in GBs",
+        "help": "",
+        "options": [],
+        "default": "4",
+        "required": "true",
+        "load_order": 0,
+        "manageiq_key": "ram_size"
+      }
+    ],
+    [
+      {
+        "label": "Disk Size",
+        "field_type": "text",
+        "placeholder": "Size in GBs",
+        "help": "",
+        "options": [],
+        "default": 40,
+        "required": "true",
+        "load_order": 1,
+        "manageiq_key": "disk_size"
+      }
+    ],
+    [
+      {
+        "label": "CPU",
+        "field_type": "select",
+        "placeholder": "",
+        "help": "",
+        "options": [
+          [1, "1 CPU"],
+          [2, "2 CPUs"],
+          [4, "4 CPUs"],
+          [6, "6 CPUs"],
+          [8, "8 CPUs"]
+        ],
+        "default": 1,
+        "required": "true",
+        "load_order": 2,
+        "manageiq_key": "cpu_count"
+      }
+    ]
+  ],
+  "load_order": 3
+}
