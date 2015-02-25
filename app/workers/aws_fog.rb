@@ -50,7 +50,7 @@ class AwsFog
       aws_secret_access_key: @aws_setting_field[2]['value']
     )
     begin
-      storage = @aws_connection.directories.create(
+      @aws_connection.directories.create(
         key: @order_item.uuid[0..9], # key is the name of the bucket
         public: true
       )
@@ -58,7 +58,6 @@ class AwsFog
       @order_item.provision_status = 'critical'
       @order_item.message = e.message
     end
-    Delayed::Worker.logger.debug "Provisioned storage"
     @order_item.provision_status = 'ok'
   end
 
