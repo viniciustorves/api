@@ -1,13 +1,8 @@
 class AwsFog
   def initialize
-    aws_setting = Setting.where(name: 'AWS').first
-    aws_setting_field = SettingField.where(setting_id: aws_setting.id).order(load_order: :asc).as_json
+    @aws_setting = Setting.where(name: 'AWS').first
+    @aws_setting_field = SettingField.where(setting_id: @aws_setting.id).order(load_order: :asc).as_json
     Fog.mock! if ENV['MOCK_MODE'] == 'true'
-    @aws_connection = Fog::Compute.new(
-      provider: 'AWS',
-      aws_access_key_id: aws_setting_field[1]['value'],
-      aws_secret_access_key: aws_setting_field[2]['value']
-    )
   end
 
   def provision(order_item)
@@ -18,6 +13,11 @@ class AwsFog
   end
 
   def provision_infrastructure
+    @aws_connection = Fog::Compute.new(
+      provider: 'AWS',
+      aws_access_key_id: @aws_setting_field[1]['value'],
+      aws_secret_access_key: @aws_setting_field[2]['value']
+    )
     answers = @order_item.product.answers
     details = {}
     # TODO: Change ProductType structure so that the key needed
@@ -43,6 +43,23 @@ class AwsFog
   end
 
   def provision_storage
+    # Create the storage connection
+    @aws_connection = Fog::Storage.new(
+      provider: 'AWS',
+      aws_access_key_id: @aws_setting_field[1]['value'],
+      aws_secret_access_key: @aws_setting_field[2]['value']
+    )
+    begin
+      storage = @aws_connection.directories.create(
+        key: @order_item.uuid[0..9], # key is the name of the bucket
+        public: true
+      )
+    rescue StandardError => e
+      @order_item.provision_status = 'critical'
+      @order_item.message = e.message
+    end
+    Delayed::Worker.logger.debug "Provisioned storage"
+    @order_item.provision_status = 'ok'
   end
 
   def provision_databases
