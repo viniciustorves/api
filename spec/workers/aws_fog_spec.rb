@@ -34,7 +34,7 @@ describe AwsFog do
     expect(order_item.payload_response).to be_present
   end
 
-  def prepare_fog_spec (name)
+  def prepare_fog_spec(name)
     enable_aws_fog_provisioning
 
     create(
