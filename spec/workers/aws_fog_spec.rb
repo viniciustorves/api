@@ -3,37 +3,18 @@ require 'rails_helper'
 describe AwsFog do
   it 'provisions infrastructure using fog' do
     order_item = prepare_fog_spec 'infrastructure'
-    fog_provisioner = AwsFog.new(order_item.id)
-    fog_provisioner.provision
-    order_item.reload
-
-    expect(order_item.provision_status).to eq 'ok'
-    expect(order_item.payload_response).to be_present
+    provision_product(order_item)
   end
 
   it 'provisions databases using fog' do
     order_item = prepare_fog_spec 'Databases'
     prepare_db_products
-    fog_provisioner = AwsFog.new(order_item.id)
-    begin
-      fog_provisioner.provision
-      order_item.reload
-    rescue StandardError => e
-      Delayed::Worker.logger.debug "DB: Caught an error: #{e.message}"
-    end
-    expect(order_item.provision_status).to eq 'ok'
-    expect(order_item.payload_response).to be_present
+    provision_product(order_item)
   end
 
   it 'provisions storage using fog' do
-    order_item = prepare_fog_spec 'storage'
-
-    fog_provisioner = AwsFog.new(order_item.id)
-    fog_provisioner.provision
-    order_item.reload
-
-    expect(order_item.provision_status).to eq 'ok'
-    expect(order_item.payload_response).to be_present
+    order_item = prepare_fog_spec 'Storage'
+    provision_product(order_item)
   end
 
   def prepare_fog_spec(name)
@@ -47,6 +28,14 @@ describe AwsFog do
         name: 'rspec_product'
       )
     )
+  end
+
+  def provision_product(order_item)
+    fog_provisioner = AwsFog.new(order_item.id)
+    fog_provisioner.provision
+    order_item.reload
+    expect(order_item.provision_status).to eq 'ok'
+    expect(order_item.payload_response).to be_present
   end
 
   def prepare_db_products
