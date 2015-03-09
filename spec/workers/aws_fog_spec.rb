@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AwsFog do
   it 'provisions infrastructure using fog' do
-    order_item = prepare_fog_spec 'infrastructure'
+    order_item = prepare_fog_spec 'Infrastructure'
     provision_product(order_item)
   end
 
@@ -17,9 +17,14 @@ describe AwsFog do
     provision_product(order_item)
   end
 
+  it 'retires infrastructure using fog' do
+    # Must first provision the product, then immediately retire it.
+    # once it passed the first two tests, then we must expect the provision_status to be retired
+    # expect(order_item.provision_status). to eq 'retired'
+  end
+
   def prepare_fog_spec(name)
     enable_aws_fog_provisioning
-
     create(
       :order_item,
       product: create(
