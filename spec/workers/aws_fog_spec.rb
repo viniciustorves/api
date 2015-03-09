@@ -12,7 +12,8 @@ describe AwsFog do
   end
 
   it 'provisions databases using fog' do
-    order_item = prepare_db_spec
+    order_item = prepare_fog_spec 'Databases'
+    prepare_db_products
     fog_provisioner = AwsFog.new(order_item.id)
     begin
       fog_provisioner.provision
@@ -42,27 +43,25 @@ describe AwsFog do
       :order_item,
       product: create(
         :product,
-        product_type: create(:product_type, name: name)
+        product_type: create(:product_type, name: name),
+        name: 'rspec_product'
       )
     )
   end
 
-  def prepare_db_spec
-    enable_aws_fog_provisioning
-    product_type = create(:product_type, name: 'Databases')
-    product = create(:product, product_type: product_type)
+  def prepare_db_products
+  # All of these attributes and product type questions are necessary for provisioning of a database
     ProductTypeQuestion.create([
-       {product_type_id: product_type.id, manageiq_key: 'allocated_storage'},
-       {product_type_id: product_type.id, manageiq_key: 'db_instance_class'},
-       {product_type_id: product_type.id, manageiq_key: 'engine'},
-       {product_type_id: product_type.id, manageiq_key: 'storage_type'}
+       {product_type_id: ProductType.find_by(name: 'Databases').id, manageiq_key: 'allocated_storage'},
+       {product_type_id: ProductType.find_by(name: 'Databases').id, manageiq_key: 'db_instance_class'},
+       {product_type_id: ProductType.find_by(name: 'Databases').id, manageiq_key: 'engine'},
+       {product_type_id: ProductType.find_by(name: 'Databases').id, manageiq_key: 'storage_type'}
     ])
     ProductAnswer.create([
-      {product_id: product.id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'allocated_storage').id, answer: '5'},
-      {product_id: product.id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'db_instance_class').id, answer: 'db.m3.medium'},
-      {product_id: product.id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'engine').id, answer: 'mysql'},
-      {product_id: product.id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'storage_type').id, answer: 'standard'}
+      {product_id: Product.find_by(name: 'rspec_product').id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'allocated_storage').id, answer: '5'},
+      {product_id: Product.find_by(name: 'rspec_product').id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'db_instance_class').id, answer: 'db.m3.medium'},
+      {product_id: Product.find_by(name: 'rspec_product').id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'engine').id, answer: 'mysql'},
+      {product_id: Product.find_by(name: 'rspec_product').id, product_type_question_id: ProductTypeQuestion.find_by(manageiq_key: 'storage_type').id, answer: 'standard'}
     ])
-    create(:order_item, product: product)
   end
 end
