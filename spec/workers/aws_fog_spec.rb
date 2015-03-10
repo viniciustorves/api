@@ -44,6 +44,7 @@ describe AwsFog do
     fog_provisioner = AwsFog.new(order_item.id)
     fog_provisioner.provision
     order_item.reload
+
     expect(order_item.provision_status).to eq 'ok'
     expect(order_item.payload_response).to be_present
   end
@@ -51,6 +52,7 @@ describe AwsFog do
   def retire_product(order_item)
     AwsFog.new(order_item.id).retire
     order_item.reload
+
     expect(order_item.provision_status). to eq 'retired'
   end
 
