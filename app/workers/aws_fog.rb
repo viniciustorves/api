@@ -15,15 +15,13 @@ class AwsFog < Provisioner
   end
 
   def retire
-    begin
-      send "retire_#{product_type}".to_sym
+    send "retire_#{product_type}".to_sym
     rescue Excon::Errors::BadRequest, Excon::Errors::Forbidden
       authentication_error
     rescue ArgumentError, StandardError, Fog::Compute::AWS::Error, Fog::AWS::RDS::Error, NoMethodError  => e
       warning_retirement_error(e.message)
     ensure
       order_item.save!
-    end
   end
 
   def infrastructure_connection
