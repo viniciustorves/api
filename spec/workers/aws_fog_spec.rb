@@ -1,39 +1,43 @@
 require 'rails_helper'
 
 describe AwsFog do
-  it 'provisions infrastructure using fog' do
-    order_item = prepare_fog_spec 'Infrastructure'
-    provision_product order_item
+  describe '#provision' do
+    it 'provisions infrastructure using fog' do
+      order_item = prepare_fog_spec 'Infrastructure'
+      provision_product order_item
+    end
+
+    it 'provisions databases using fog' do
+      order_item = prepare_fog_spec 'Databases'
+      prepare_db_products
+      provision_product order_item
+    end
+
+    it 'provisions storage using fog' do
+      order_item = prepare_fog_spec 'Storage'
+      provision_product(order_item)
+    end
   end
 
-  it 'provisions databases using fog' do
-    order_item = prepare_fog_spec 'Databases'
-    prepare_db_products
-    provision_product order_item
-  end
+  describe '#retire' do
+    it 'retires infrastructure using fog' do
+      order_item = prepare_fog_spec 'Infrastructure'
+      provision_product order_item
+      retire_product order_item
+    end
 
-  it 'provisions storage using fog' do
-    order_item = prepare_fog_spec 'Storage'
-    provision_product(order_item)
-  end
+    it 'retires databases using fog' do
+      order_item = prepare_fog_spec 'Databases'
+      prepare_db_products
+      provision_product order_item
+      retire_product order_item
+    end
 
-  it 'retires infrastructure using fog' do
-    order_item = prepare_fog_spec 'Infrastructure'
-    provision_product order_item
-    retire_product order_item
-  end
-
-  it 'retires databases using fog' do
-    order_item = prepare_fog_spec 'Databases'
-    prepare_db_products
-    provision_product order_item
-    retire_product order_item
-  end
-
-  it 'retires storage using fog' do
-    order_item = prepare_fog_spec 'Storage'
-    provision_product order_item
-    retire_product order_item
+    it 'retires storage using fog' do
+      order_item = prepare_fog_spec 'Storage'
+      provision_product order_item
+      retire_product order_item
+    end
   end
 
   def provision_product(order_item)
