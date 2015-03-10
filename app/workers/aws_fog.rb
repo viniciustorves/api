@@ -15,7 +15,6 @@ class AwsFog < Provisioner
   end
 
   def retire
-    mock_mode
     begin
       send "retire_#{product_type}".to_sym
     rescue Excon::Errors::BadRequest, Excon::Errors::Forbidden
