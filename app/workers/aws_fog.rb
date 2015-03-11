@@ -25,12 +25,11 @@ class AwsFog < Provisioner
   end
 
   def infrastructure_connection
-    aws_connection = Fog::Compute.new(
+    Fog::Compute.new(
       provider: 'AWS',
       aws_access_key_id: aws_settings[:access_key],
       aws_secret_access_key: aws_settings[:secret_key]
     )
-    aws_connection
   end
 
   def provision_infrastructure
@@ -93,11 +92,10 @@ class AwsFog < Provisioner
   end
 
   def rds_details
-    details = rds_item.merge(
+    rds_item.merge(
       'MasterUserPassword' => @sec_pw,
       'MasterUsername' => 'admin'
     )
-    details
   end
 
   def encrypt_rds_details
