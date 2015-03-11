@@ -1,12 +1,15 @@
 class Provisioner < Providers
-  private
+  attr_reader :order_item
+
+  def initialize(order_item_id = nil)
+    !order_item_id.nil? ? @order_item_id = order_item_id : ''
+  end
 
   def order_item
     @order_item ||= OrderItem.find @order_item_id
   end
 
   def product_provisioner
-    Delayed::Worker.logger.debug "product type: #{order_item.product.product_type.name}"
     order_item.product.product_type.name
   end
 
