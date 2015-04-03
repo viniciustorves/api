@@ -132,5 +132,4 @@ source 'http://rails-assets.org' do
   gem 'rails-assets-ng-currency'
   gem 'rails-assets-selectize'
   gem 'rails-assets-bootstrap'
-  gem 'rails-assets-angular-route'
 end

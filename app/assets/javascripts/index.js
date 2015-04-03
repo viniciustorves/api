@@ -31,8 +31,7 @@ angular.module("broker", [
   "broker.directives",
   "broker.dashboard",
   "broker.users",
-  "broker.settings",
-  "ngRoute"
+  "broker.settings"
 ]).run(
   /**@ngInject*/
   function($http, $rootScope, $log, $location, AuthService, UsersResource, Session, $urlRouter, ROUTES, $state, APP_CONFIG, FlashesService) {
