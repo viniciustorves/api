@@ -9,16 +9,18 @@
 
         </br>
 
-        <angucomplete id="members"
-                      placeholder="User Search"
-                      pause="400"
-                      selectedobject="lastSelected"
-                      url="{{searchURL}}"
-                      titlefield="first_name,last_name"
-                      descriptionfield="email"
-                      inputclass="form-control form-control-small"
-                      imagefield="gravatar"
-                      imageuri="http://www.gravatar.com/avatar/"/>
+        <angucomplete-alt id="members"
+                          placeholder="User/Email Search"
+                          pause="400"
+                          selected-object="lastSelected"
+                          remote-url="{{searchURL}}"
+                          title-field="first_name,last_name"
+                          description-field="email"
+                          input-class="form-control form-control-small"
+                          image-field="gravatar"
+                          clear-selected="true"
+                          auto-match="true">
+        </angucomplete-alt>
 
         <br>
 
@@ -34,7 +36,7 @@
 
         <div class="list-group">
             <a href="#" class="list-group-item" ng-repeat="(email, userAddition) in userAdditons" ng-click="removeUser(email)">
-                <img src="{{userAddition.image}}"/>
+                <img ng-src="http://www.gravatar.com/avatar/"/>
                 <div class="left-most">
                     <h4 class="list-group-item-heading">{{userAddition.title}}</h4>
                     <p class="list-group-item-text">{{userAddition.description}}</p>
