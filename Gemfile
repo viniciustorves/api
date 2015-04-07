@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.7'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 0.17.1'
 gem 'pg_search', '~> 0.7.8'
 
 # Pagination
@@ -42,7 +42,7 @@ gem 'pundit'
 
 gem 'time_for_a_boolean'
 
-gem 'jellyfish_fog_aws', path: 'lib/jellyfish_fog_aws'
+gem 'jellyfish_fog_aws', path: 'lib/jellyfish_fog_aws', require: false
 gem 'custom_configuration'
 
 gem 'bootstrap-sass'
@@ -65,7 +65,7 @@ group :development, :test do
   gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'spring'
   gem 'web-console', '~> 2.0.0'
-  gem 'capybara-angular'
+  gem 'capybara-angular', '0.1.0'
   gem 'launchy'
 end
 
