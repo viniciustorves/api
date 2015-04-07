@@ -25,6 +25,22 @@
           </ul>
         </li>
 
+        <li class="li-my-services"
+            ng-class="{active: leftSidebarCtrl.$state.includes('base.authed.product.view'), current: leftSidebarCtrl.$state.includes('base.authed.product.view')}"
+            expand-arrow>
+            <a class="li-links">
+              <span class="fa fa-file-o left-tray-icon left-tray-menu-icon"></span>
+              <span class="texts">MY SERVICES </span>
+              <span class="number side-bar-space">{{leftSidebarCtrl.products.length}}</span>
+              <span class="arrows-container"><i class="arrows fa fa-caret-right"></i></span>
+            </a>
+            <ul>
+              <li ng-class="{first: $first}"
+                  ng-repeat="item in leftSidebarCtrl.products"><i></i><a ui-sref="base.authed.project.view({projectId: item.id})"
+                                                                             ui-sref-active="active">{{item.name}}</a></li>
+            </ul>
+        </li>
+
         <li ng-class="{active: leftSidebarCtrl.$state.includes('base.authed.users.orders')}">
           <a ui-sref="base.authed.users.orders" class="li-links">
             <span class="fa fa-clock-o left-tray-icon left-tray-menu-icon"></span>
