@@ -31,7 +31,7 @@ var GroupsResource = function($resource, apiResource, $state) {
      return this.role === 'admin';
      };*/
 
-    return Users;
+    return Groups;
 };
 
 window.GroupsResource = GroupsResource;

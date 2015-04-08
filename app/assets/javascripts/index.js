@@ -16,6 +16,7 @@ angular.module("broker", [
   "broker.common",
   "broker.base",
   "broker.errors",
+  "broker.groups",
   "broker.admin",
   "broker.alerts",
   "broker.flashes",

@@ -1,9 +1,9 @@
 <div class="groups-list-page">
 
   <section-header name="Groups">
-    <users-box class="product-box" ng-repeat="group in listGroupsCtrl.groups" group="group">
+    <groups-box class="product-box" ng-repeat="group in listGroupsCtrl.groups" group="group">
       <a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})">Edit</a>
-    </users-box>
+    </groups-box>
 
     <div class="add-box">
       <div class="product-box-shadow">

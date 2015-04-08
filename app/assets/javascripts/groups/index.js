@@ -3,8 +3,8 @@
 
 var GroupsModule = angular.module('broker.groups', [])
     .factory('GroupsResource', GroupsResource)
-    .controller('GroupsController', GroupsController)//Might want to include the users_box_directive.js sort of shindig
-    //for ui outside of the admin tab
+    .directive('groupsBox', GroupsBoxDirective)
+    .controller('GroupsController', GroupsController)
     .config(
     /**@ngInject*/
     function($stateProvider) {
