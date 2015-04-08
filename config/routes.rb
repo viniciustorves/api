@@ -64,7 +64,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :services, defaults: { format: :json }
+    resources :services, only: [:index, :show], defaults: { format: :json }
 
     resources :manage_iq_products, defaults: { format: :json }
 

@@ -3,6 +3,10 @@ class ServicePolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
   class Scope < Scope
     def resolve
       if user.admin?
