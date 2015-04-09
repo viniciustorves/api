@@ -1,7 +1,7 @@
 'use strict';
 
 /**@ngInject*/
-var AdminAddGroupController = function(Group, FlashesService) {
+var AdminAddGroupController = function(group, FlashesService) {
   this.group = group;
   this.FlashesService = FlashesService;
 };
