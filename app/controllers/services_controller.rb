@@ -8,7 +8,7 @@ class ServicesController < ApplicationController
     render json: @services
   end
 
-  api :GET, '/services/:tag', 'Shows services with :tag'
+  api :GET, '/services/:tag', 'Returns services with :tag'
   def show
     authorize Service.new
     load_tagged_services
@@ -22,6 +22,13 @@ class ServicesController < ApplicationController
   end
 
   def load_tagged_services
-    @services = policy_scope(Service)
+    # GET PROJECTS SCOPED TO USER AND GET TAGGED ORDER ITEMS (SERVICES)
+    projects = policy_scope(Project)
+    @services = []
+    projects.each do |project|
+      OrderItem.where(project_id: project.id).each do |order_item|
+        @services << order_item if order_item.tag_list.include? params[:tag]
+      end
+    end
   end
 end

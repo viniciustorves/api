@@ -64,7 +64,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :services, only: [:index, :show], defaults: { format: :json }
+    # Services (Alias for OrderItem)
+    get 'services' => 'services#index', as: :services_index
+    get 'services/:tag' => 'services#show', as: :services_show
 
     resources :manage_iq_products, defaults: { format: :json }
 
