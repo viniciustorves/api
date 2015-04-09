@@ -4,31 +4,60 @@ class ServicesController < ApplicationController
   api :GET, '/services', 'Returns a collection of services'
   def index
     authorize Service.new
-    load_services
-    render json: @services
+    load_services_via_sql
+    render json: @services, each_serializer: ServiceSerializer
   end
 
   api :GET, '/services/:tag', 'Returns services with :tag'
   def show
     authorize Service.new
     load_tagged_services
-    render json: @services
+    render json: @services, each_serializer: ServiceSerializer
   end
 
   private
 
-  def load_services
+  def load_services_via_policy
     @services = policy_scope(Service)
+  end
+
+  def load_services_via_sql
+    # GET PROJECTS SCOPED TO USER AND GET TAGGED ORDER ITEMS (SERVICES)
+    projects = policy_scope(Project)
+
+    # CREATE PROJECT ID LIST
+    project_ids = []
+    projects.each do |project|
+      project_ids << project.id
+    end
+
+    # QUERY OUT DESIRED ATTRIBUTES - TODO: FIGURE OUT A BETTER WAY TO DO THIS
+    @services = OrderItem.select(
+      'order_items.*,
+      projects.name as project_name,
+      projects.description as project_description,
+      products.name as service_name,
+      products.description as service_description'
+    ).from('order_items').where(project_id: project_ids).joins(:project, :product)
   end
 
   def load_tagged_services
     # GET PROJECTS SCOPED TO USER AND GET TAGGED ORDER ITEMS (SERVICES)
     projects = policy_scope(Project)
-    @services = []
+
+    # CREATE PROJECT ID LIST
+    project_ids = []
     projects.each do |project|
-      OrderItem.where(project_id: project.id).each do |order_item|
-        @services << order_item if order_item.tag_list.include? params[:tag]
-      end
+      project_ids << project.id
     end
+
+    # QUERY OUT DESIRED ATTRIBUTES - TODO: FIGURE OUT A BETTER WAY TO DO THIS
+    @services = OrderItem.tagged_with(params[:tag]).select(
+      'order_items.*,
+      projects.name as project_name,
+      projects.description as project_description,
+      products.name as service_name,
+      products.description as service_description'
+    ).from('order_items').where(project_id: project_ids).joins(:project, :product)
   end
 end
