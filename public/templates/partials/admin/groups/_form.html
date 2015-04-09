@@ -1,44 +1,34 @@
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('first_name')}">
-  <label class="col-sm-2 control-label" for="first_name">First Name:</label>
+<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('group_name')}">
+  <label class="col-sm-2 control-label" for="group_name">Group Name:</label>
 
   <div class="col-sm-6 controls">
-    <input id="first_name" name="first_name" type="text" ng-model="adminGroupFormCtrl.group.first_name" ng-change="adminGroupFormCtrl.clearSubmitError('first_name')" class="form-control" required/>
+    <input id="group_name" name="group_name" type="text" ng-model="adminGroupFormCtrl.group.group_name" ng-change="adminGroupFormCtrl.clearSubmitError('group_name')" class="form-control" required/>
 
     <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('first_name', 'required')">First Name is Required.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('first_name', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('first_name')}}</div>
+      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_name', 'required')">Group Name is Required.</div>
+      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_name', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('group_name')}}</div>
     </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('last_name')}">
-  <label class="col-sm-2 control-label" for="last_name">Last Name:</label>
+<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('group_role')}">
+    <label class="col-sm-2 control-label">Group Role:</label>
 
-  <div class="col-sm-6 controls">
-    <input id="last_name" name="last_name" type="text" ng-model="adminGroupFormCtrl.group.last_name" ng-change="adminGroupFormCtrl.clearSubmitError('last_name')" class="form-control" required/>
+    <div class="col-sm-6 controls">
+        <ui-select id="group_role" name="group_role" ng-model="adminGroupFormCtrl.group.group_role" ng-change="adminGroupFormCtrl.clearSubmitError('group_role')" theme="selectize" required />
+        <ui-select-match>{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="group_role.value as group_role in adminGroupFormCtrl.group_roles">
+            <span ng-bind-html-unsafe="group_role.name">{{group_role.name}}</span>
+        </ui-select-choices>
+        </ui-select>
 
-    <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('last_name', 'required')">Last Name is Required.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('last_name', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('last_name')}}</div>
+        <div class="help-block">
+            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_role', 'required')">Group Role is Required</div>
+            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_role', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('group_role')}}</div>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-4"></div>
-</div>
-
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('email')}">
-  <label class="col-sm-2 control-label" for="email">Email:</label>
-
-  <div class="col-sm-6 controls">
-    <input id="email" name="email" type="email" ng-model="adminGroupFormCtrl.group.email" ng-change="adminGroupFormCtrl.clearSubmitError('email')" class="form-control" required/>
-
-    <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('email', 'required')">Email Address is Required.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('email', 'email')">Email Address is Not Valid.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('email', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('email')}}</div>
-    </div>
-  </div>
-  <div class="col-sm-4"></div>
+    <div class="col-sm-4"></div>
 </div>
 
 <div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('password')}">
@@ -71,21 +61,20 @@
   <div class="col-sm-4"></div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('role')}">
-  <label class="col-sm-2 control-label">Role:</label>
+<section-header name="Add Users to Group">
+    <users-box class="product-box" ng-repeat="user in listUsersCtrl.users" user="user">
+        <a type="button" class="btn btn-primary" ui-sref="base.authed.admin.users.edit({id: user.id})">Edit</a>
+    </users-box>
 
-  <div class="col-sm-6 controls">
-    <ui-select id="role" name="role" ng-model="adminGroupFormCtrl.group.role" ng-change="adminGroupFormCtrl.clearSubmitError('role')" theme="selectize" required />
-    <ui-select-match>{{$select.selected.name}}</ui-select-match>
-      <ui-select-choices repeat="role.value as role in adminGroupFormCtrl.roles">
-        <span ng-bind-html-unsafe="role.name">{{role.name}}</span>
-      </ui-select-choices>
-    </ui-select>
-
-    <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('role', 'required')">Role is Required</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('role', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('role')}}</div>
+    <div class="add-box">
+        <div class="product-box-shadow">
+            <a ui-sref="base.authed.admin.users.add">
+                <div class="fa-stack">
+                    <i class="fa fa-fw fa-stack-2x fa-circle-thin"></i>
+                    <i class="fa fa-fw fa-stack-1x fa-plus"></i>
+                </div>
+                <div class="title">Add User</div>
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-4"></div>
-</div>
+</section-header>
