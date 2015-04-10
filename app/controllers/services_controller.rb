@@ -23,7 +23,7 @@ class ServicesController < ApplicationController
 
   def load_services_via_sql
     # GET PROJECTS SCOPED TO USER AND GET TAGGED ORDER ITEMS (SERVICES)
-    projects = policy_scope(Project)
+    projects = policy_scope(Project.all)
 
     # CREATE PROJECT ID LIST
     project_ids = []
