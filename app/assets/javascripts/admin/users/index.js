@@ -40,12 +40,6 @@ var UsersAdminModule = angular.module('broker.admin.users', [])
           controller: 'AdminEditUserController as adminEditUserCtrl',
           resolve: AdminEditUserData
         })
-        .state('base.authed.admin.groups.add', {
-          url: '/groups/add',
-          templateUrl: '/templates/partials/admin/users/add_group.html',
-          controller: 'AdminAddGroupController as adminAddGroupCtrl',
-          resolve: AdminAddGroupData
-        });
     }
   );
 
