@@ -1,7 +1,7 @@
 'use strict';
 
 /**@ngInject*/
-function ProjectController($interval, project, ProjectUsersResource, OrderItemsResource, alerts, products, FlashesService) {
+function ProjectController($interval, project, OrderItemsResource, alerts, products, FlashesService) {
 
   this.intervalDelay = 30000;
   this.$interval = $interval;
@@ -15,7 +15,6 @@ function ProjectController($interval, project, ProjectUsersResource, OrderItemsR
   });
   this.products = products;
 
-  this.ProjectUsersResource = ProjectUsersResource;
   this.OrderItemsResource = OrderItemsResource;
 
   this.FlashesService = FlashesService;
@@ -40,7 +39,7 @@ ProjectController.resolve = {
   project: function(ProjectsResource, $stateParams) {
     return ProjectsResource.get({
       id: $stateParams.projectId,
-      'includes[]': ['approvals', 'approvers', 'services', 'staff']
+      'includes[]': ['approvals', 'approvers', 'services']
     }).$promise;
   },
   /**@ngInject*/
@@ -85,28 +84,6 @@ ProjectController.prototype = {
   },
   reject: function() {
     this.project.$reject({reason: this.reason});
-  },
-
-  removeUserFromProject: function(index) {
-    var self = this;
-
-    this.ProjectUsersResource.delete({id: this.project.id, staff_id: this.project.staff[index].id}).$promise.then(
-      _.bind(function(data) {
-        this.project.staff.splice(index, 1);
-        self.FlashesService.add({
-            timeout: true,
-            type: 'success',
-            message: "The user was successfully removed from this project."
-        });
-      }, this),
-      function(error) {
-        self.FlashesService.add({
-          timeout: true,
-          type: 'error',
-          message: "There was an error removing this user."
-        });
-      }
-    );
   },
 
   removeServiceFromProject: function(serviceIndex) {

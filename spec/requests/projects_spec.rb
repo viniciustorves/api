@@ -18,9 +18,10 @@ RSpec.describe 'Projects API' do
     it 'returns a collection of all projects', :show_in_doc  do
       create :project_detail, project_id: @project.id
       create :project_detail, project_id: @project2.id
-      staff = create :staff
-      create :staff_project, staff_id: staff.id, project_id: @project.id
+      create(:staff).groups << Group.new(projects: [@project])
+
       get '/api/v1/projects'
+
       expect(json.length).to eq(2)
     end
 

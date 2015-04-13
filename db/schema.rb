@@ -151,6 +151,22 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "groups", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "groups_projects", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+    t.integer  "project_id"
+  end
+
+  add_index "groups_projects", ["group_id"], name: "index_groups_projects_on_group_id", using: :btree
+  add_index "groups_projects", ["project_id"], name: "index_groups_projects_on_project_id", using: :btree
+
   create_table "logs", force: :cascade do |t|
     t.integer  "staff_id",   null: false
     t.integer  "level"
@@ -160,6 +176,16 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   end
 
   add_index "logs", ["staff_id"], name: "index_logs_on_staff_id", using: :btree
+
+  create_table "memberships", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "group_id"
+    t.integer  "staff_id"
+  end
+
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
+  add_index "memberships", ["staff_id"], name: "index_memberships_on_staff_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.text     "text"
@@ -339,14 +365,6 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   add_index "staff", ["email"], name: "index_staff_on_email", unique: true, using: :btree
   add_index "staff", ["reset_password_token"], name: "index_staff_on_reset_password_token", unique: true, using: :btree
 
-  create_table "staff_projects", force: :cascade do |t|
-    t.integer "staff_id"
-    t.integer "project_id"
-  end
-
-  add_index "staff_projects", ["project_id"], name: "index_staff_projects_on_project_id", using: :btree
-  add_index "staff_projects", ["staff_id", "project_id"], name: "index_staff_projects_on_staff_id_and_project_id", unique: true, using: :btree
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -384,7 +402,6 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   create_table "user_settings", force: :cascade do |t|
     t.integer  "staff_id"
     t.string   "name",       limit: 255
-    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
@@ -404,4 +421,8 @@ ActiveRecord::Schema.define(version: 20150423163922) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
+  add_foreign_key "groups_projects", "groups"
+  add_foreign_key "groups_projects", "projects"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "staff"
 end

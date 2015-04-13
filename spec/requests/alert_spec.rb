@@ -82,20 +82,16 @@ RSpec.describe 'Alerts API' do
   end
 
   describe 'GET show (as Staff)' do
-    before :each  do
+    it 'verifies show alerts, scoped to the user', :show_in_doc do
       staff = create :staff
       project = create :project
-      project.staff << staff
-      visible_alert = create :alert, :active
-      visible_alert.project = project
-      visible_alert.save!
-      create :alert, :active
-      create :alert, :active
+      staff.groups << Group.new(projects: [project])
+      _visible = create :alert, :active, project: project
+      _invisible = create :alert, :active
       sign_in_as staff
-    end
 
-    it 'verifies show alerts, scoped to the user', :show_in_doc do
       get '/api/v1/alerts'
+
       expect(json.length).to eq(1)
     end
   end

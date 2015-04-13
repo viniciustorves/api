@@ -6,7 +6,7 @@ describe ProjectPolicy do
   let(:admin) { create :staff, :admin }
   let(:user) do
     user = create :staff, :user
-    user.projects << project
+    user.groups << Group.new(projects: [project])
     user
   end
 

@@ -14,7 +14,6 @@ window.apiRoutes = {
 
     "projectsById":      "/projects/:id",
     "projectQuestions":  "/project_questions/:id",
-    "projectUser":       "/projects/:id/staff/:staff_id",
     "servicesById":      "/services/:id",
 
     "productsById":      "/products/:id",
@@ -26,7 +25,6 @@ window.apiRoutes = {
 
     "staffOrders":       "/staff/:staff_id/orders/:id",
     "staffById":         "/staff/:id",
-    "staffProjects":     "/staff/:id/projects/:project_id",
     "staffSearch":       "/staff?query=",
     "currentMember":     "/staff/current_member",
     "services":           "/services",

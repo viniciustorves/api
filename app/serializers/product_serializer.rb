@@ -17,6 +17,7 @@
 #  provisionable_type   :string
 #  provisionable_id     :integer
 #  provisioning_answers :json
+#  product_type         :string
 #
 # Indexes
 #
