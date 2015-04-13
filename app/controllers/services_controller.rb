@@ -8,6 +8,14 @@ class ServicesController < ApplicationController
     render json: @services, each_serializer: ServiceSerializer
   end
 
+  api :GET, '/services/count', 'Returns a count of independent services across projects'
+  def count
+    authorize Service.new
+    load_tagged_services
+    response = { count: @services.values.count }
+    render json: response
+  end
+
   api :GET, '/services/:tag', 'Returns services with :tag'
   def show
     authorize Service.new
@@ -34,10 +42,10 @@ class ServicesController < ApplicationController
     # QUERY OUT DESIRED ATTRIBUTES - TODO: FIGURE OUT A BETTER WAY TO DO THIS
     @services = OrderItem.select(
       'order_items.*,
-      projects.name as project_name,
-      projects.description as project_description,
-      products.name as service_name,
-      products.description as service_description'
+    projects.name as project_name,
+    projects.description as project_description,
+    products.name as service_name,
+    products.description as service_description'
     ).from('order_items').where(project_id: project_ids).joins(:project, :product)
   end
 

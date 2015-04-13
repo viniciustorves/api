@@ -3,6 +3,10 @@ class ServicePolicy < ApplicationPolicy
     true
   end
 
+  def count?
+    true
+  end
+
   def show?
     true
   end
