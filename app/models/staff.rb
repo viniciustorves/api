@@ -42,7 +42,9 @@ class Staff < ActiveRecord::Base
   has_many :orders
   has_many :user_settings
   has_many :notifications
-  has_many :projects
+  has_many :memberships
+  has_many :groups, through: :memberships
+  has_many :projects, through: :groups
 
   has_one :cart
 
