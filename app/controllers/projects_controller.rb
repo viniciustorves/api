@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  PROJECT_INCLUDES = %w(alerts approvals approvers latest_alerts project_answers project_detail services staff)
+  PROJECT_INCLUDES = %w(alerts approvals approvers latest_alerts project_answers project_detail services)
   PROJECT_METHODS = %w(account_number cpu domain hdd icon monthly_spend order_history problem_count ram resources resources_unit state state_ok status url users)
   before_action :pre_hook
   after_action :verify_authorized
@@ -54,13 +54,12 @@ class ProjectsController < ApplicationController
   def create
     authorize Project
     project = Project.create project_params
-    project.staff << current_user unless current_user.admin?
     respond_with_params project
   end
 
   api :PUT, '/projects/:id', 'Updates project with :id'
   param :id, :number, required: true
-  param :includes, Array, in: (PROJECT_INCLUDES - ['staff']), required: false
+  param :includes, Array, in: PROJECT_INCLUDES, required: false
   document_project_params
   error code: 404, desc: MissingRecordDetection::Messages.not_found
   error code: 422, desc: ParameterValidation::Messages.missing

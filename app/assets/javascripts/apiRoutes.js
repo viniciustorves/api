@@ -14,7 +14,6 @@ window.apiRoutes = {
 
     "projectsById":      "/projects/:id",
     "projectQuestions":  "/project_questions/:id",
-    "projectUser":       "/projects/:id/staff/:staff_id",
     "servicesById":      "/services/:id",
 
     "productsById":      "/products/:id",

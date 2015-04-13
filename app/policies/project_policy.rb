@@ -41,8 +41,7 @@ class ProjectPolicy < ApplicationPolicy
       if user.admin?
         scope
       else
-        # Users are only allowed to see projects they've created or have been added to
-        scope.joins(:staff_projects).where(staff_projects: { staff_id: user.id })
+        user.projects
       end
     end
   end
@@ -50,6 +49,6 @@ class ProjectPolicy < ApplicationPolicy
   private
 
   def admin_or_related
-    user.admin? || user.project_ids.include?(record.id)
+    user.admin? || user.projects.exists?(record.id)
   end
 end

@@ -18,7 +18,7 @@ RSpec.describe 'Projects API' do
     it 'returns a collection of all projects', :show_in_doc  do
       create :project_detail, project_id: @project.id
       create :project_detail, project_id: @project2.id
-      create(:staff, projects: [@project])
+      create(:staff).groups << Group.new(projects: [@project])
 
       get '/api/v1/projects'
 

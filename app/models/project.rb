@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
 
   # Relationships
   has_many :project_answers
-  has_many :groups
+  has_and_belongs_to_many :groups
   has_many :staff, through: :groups
   has_many :services, foreign_key: 'project_id', class_name: 'OrderItem'
   has_many :alerts
