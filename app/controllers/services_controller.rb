@@ -12,7 +12,15 @@ class ServicesController < ApplicationController
   def count
     authorize Service.new
     load_services_via_sql
-    render json: { count: @services.size }
+    service_rollup = {}
+    overall_rollup = {}
+    @services.each do |p|
+      service_rollup[p.project_name] = {} if service_rollup[p.project_name].nil?
+      service_rollup[p.project_name][p.service_name] = service_rollup[p.project_name][p.service_name].nil? ? 1 : (service_rollup[p.project_name][p.service_name] + 1)
+      overall_rollup[p.service_name] = overall_rollup[p.service_name].nil? ? 1 : (overall_rollup[p.service_name] + 1)
+    end
+    service_rollup[:ALL] = overall_rollup
+    render json: service_rollup
   end
 
   api :GET, '/services/:tag', 'Returns services with :tag'
