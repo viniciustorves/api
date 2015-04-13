@@ -27,9 +27,12 @@ window.apiRoutes = {
     "staffById":         "/staff/:id",
     "staffSearch":       "/staff?query=",
     "currentMember":     "/staff/current_member",
+
     "services":           "/services",
     "serviceAll":         "/services/all_count",
-    "serviceProject":     "/services/project_count"
+    "serviceProject":     "/services/project_count",
 
+    "groups":            "/groups",
+    "groupsById":        "/groups/:id"
   }
 };
