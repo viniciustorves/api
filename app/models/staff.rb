@@ -9,8 +9,8 @@
 #  phone                  :string(30)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  encrypted_password     :string(255)      default(""), not null
-#  reset_password_token   :string(255)
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
 #  sign_in_count          :integer          default(0), not null
@@ -20,7 +20,7 @@
 #  last_sign_in_ip        :inet
 #  role                   :integer          default(0)
 #  deleted_at             :datetime
-#  authentication_token   :string(255)
+#  authentication_token   :string
 #
 # Indexes
 #
@@ -41,9 +41,8 @@ class Staff < ActiveRecord::Base
 
   has_many :orders
   has_many :user_settings
-  has_many :staff_projects
   has_many :notifications
-  has_many :projects, through: :staff_projects
+  has_many :projects
 
   has_one :cart
 

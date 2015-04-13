@@ -42,9 +42,6 @@ Rails.application.routes.draw do
 
       # Staff Settings (user_settings)
       resources :settings, controller: :staff_settings, defaults: { format: :json }, only: [:index, :show, :create, :update, :destroy]
-
-      # Staff Projects
-      resources :projects, controller: :staff_projects, defaults: { format: :json }, only: [:index, :update, :destroy]
     end
 
     # Organizations

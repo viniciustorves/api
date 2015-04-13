@@ -13,9 +13,9 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  setting_id   :integer
-#  env_var_name :string(255)
+#  env_var_name :string
 #  disabled     :boolean          default(FALSE)
-#  hid          :string(255)      not null
+#  hid          :string           not null
 #  secret       :boolean          default(FALSE), not null
 #
 # Indexes

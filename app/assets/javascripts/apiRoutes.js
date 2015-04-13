@@ -26,7 +26,6 @@ window.apiRoutes = {
 
     "staffOrders":       "/staff/:staff_id/orders/:id",
     "staffById":         "/staff/:id",
-    "staffProjects":     "/staff/:id/projects/:project_id",
     "staffSearch":       "/staff?query=",
     "currentMember":     "/staff/current_member"
 

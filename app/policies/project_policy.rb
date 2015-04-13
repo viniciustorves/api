@@ -24,18 +24,6 @@ class ProjectPolicy < ApplicationPolicy
     admin_or_related
   end
 
-  def staff?
-    admin_or_related
-  end
-
-  def add_staff?
-    user.admin?
-  end
-
-  def remove_staff?
-    user.admin?
-  end
-
   def approvals?
     true
   end

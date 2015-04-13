@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409153833) do
+ActiveRecord::Schema.define(version: 20150413165102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "bundled_products", ["product_id"], name: "index_bundled_products_on_product_id", using: :btree
 
   create_table "bundles", force: :cascade do |t|
-    t.string   "name",        limit: 255
+    t.string   "name"
     t.text     "description"
-    t.string   "img",         limit: 255
+    t.string   "img"
     t.datetime "active_at"
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.integer  "staff_id"
-    t.string   "slug",       limit: 255, null: false
-    t.string   "title",      limit: 255, null: false
+    t.string   "slug",       null: false
+    t.string   "title",      null: false
     t.text     "body"
   end
 
@@ -112,15 +112,15 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "content_pages", ["staff_id"], name: "index_content_pages_on_staff_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",               default: 0, null: false
-    t.integer  "attempts",               default: 0, null: false
-    t.text     "handler",                            null: false
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by",  limit: 255
-    t.string   "queue",      limit: 255
+    t.string   "locked_by"
+    t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,10 +128,10 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",           limit: 255, null: false
-    t.integer  "sluggable_id",               null: false
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope",          limit: 255
+    t.string   "scope"
     t.datetime "created_at"
   end
 
@@ -171,15 +171,15 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.datetime "deleted_at"
     t.integer  "project_id"
     t.integer  "miq_id"
-    t.uuid     "uuid",                                                         default: "uuid_generate_v4()"
-    t.decimal  "setup_price",                         precision: 10, scale: 4, default: 0.0
-    t.decimal  "hourly_price",                        precision: 10, scale: 4, default: 0.0
-    t.decimal  "monthly_price",                       precision: 10, scale: 4, default: 0.0
+    t.uuid     "uuid",                                             default: "uuid_generate_v4()"
+    t.decimal  "setup_price",             precision: 10, scale: 4, default: 0.0
+    t.decimal  "hourly_price",            precision: 10, scale: 4, default: 0.0
+    t.decimal  "monthly_price",           precision: 10, scale: 4, default: 0.0
     t.json     "payload_request"
     t.json     "payload_acknowledgement"
     t.json     "payload_response"
     t.integer  "latest_alert_id"
-    t.string   "status_msg",              limit: 255
+    t.string   "status_msg"
   end
 
   add_index "order_items", ["cloud_id"], name: "index_order_items_on_cloud_id", using: :btree
@@ -214,14 +214,6 @@ ActiveRecord::Schema.define(version: 20150409153833) do
 
   add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at", using: :btree
 
-  create_table "product_types", force: :cascade do |t|
-    t.string   "name",                  limit: 255
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.json     "questions_form_schema"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "name",                 limit: 255
     t.text     "description"
@@ -234,7 +226,7 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.decimal  "hourly_price",                     precision: 10, scale: 4, default: 0.0
     t.decimal  "monthly_price",                    precision: 10, scale: 4, default: 0.0
     t.json     "provisioning_answers"
-    t.string   "product_type",         limit: 255
+    t.string   "product_type"
   end
 
   add_index "products", ["deleted_at"], name: "index_products_on_deleted_at", using: :btree
@@ -251,17 +243,17 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "project_answers", ["project_question_id"], name: "index_project_answers_on_project_question_id", using: :btree
 
   create_table "project_details", force: :cascade do |t|
-    t.string  "requestor_name",             limit: 255
+    t.string  "requestor_name"
     t.date    "requestor_date"
-    t.string  "team_name",                  limit: 255
+    t.string  "team_name"
     t.integer "charge_number"
     t.float   "nte_budget"
-    t.string  "project_owner",              limit: 255
-    t.string  "sr_associate",               limit: 255
-    t.string  "principal",                  limit: 255
+    t.string  "project_owner"
+    t.string  "sr_associate"
+    t.string  "principal"
     t.date    "estimated_termination_date"
-    t.string  "data_type",                  limit: 255
-    t.string  "others",                     limit: 255
+    t.string  "data_type"
+    t.string  "others"
     t.integer "project_id"
   end
 
@@ -313,9 +305,9 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "setting_id"
-    t.string   "env_var_name", limit: 255
+    t.string   "env_var_name"
     t.boolean  "disabled",                 default: false
-    t.string   "hid",          limit: 255,                 null: false
+    t.string   "hid",                                      null: false
     t.boolean  "secret",                   default: false, null: false
   end
 
@@ -324,7 +316,7 @@ ActiveRecord::Schema.define(version: 20150409153833) do
 
   create_table "settings", force: :cascade do |t|
     t.string "name", limit: 255
-    t.string "hid",  limit: 255, null: false
+    t.string "hid",              null: false
   end
 
   add_index "settings", ["hid"], name: "index_settings_on_hid", unique: true, using: :btree
@@ -336,8 +328,8 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.string   "phone",                  limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "encrypted_password",                 default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                      default: 0,  null: false
@@ -347,7 +339,7 @@ ActiveRecord::Schema.define(version: 20150409153833) do
     t.inet     "last_sign_in_ip"
     t.integer  "role",                               default: 0
     t.datetime "deleted_at"
-    t.string   "authentication_token",   limit: 255
+    t.string   "authentication_token"
   end
 
   add_index "staff", ["authentication_token"], name: "index_staff_on_authentication_token", unique: true, using: :btree
@@ -355,20 +347,12 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "staff", ["email"], name: "index_staff_on_email", unique: true, using: :btree
   add_index "staff", ["reset_password_token"], name: "index_staff_on_reset_password_token", unique: true, using: :btree
 
-  create_table "staff_projects", force: :cascade do |t|
-    t.integer "staff_id"
-    t.integer "project_id"
-  end
-
-  add_index "staff_projects", ["project_id"], name: "index_staff_projects_on_project_id", using: :btree
-  add_index "staff_projects", ["staff_id", "project_id"], name: "index_staff_projects_on_staff_id_and_project_id", unique: true, using: :btree
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type", limit: 255
+    t.string   "taggable_type"
     t.integer  "tagger_id"
-    t.string   "tagger_type",   limit: 255
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -377,8 +361,8 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name",           limit: 255
-    t.integer "taggings_count",             default: 0
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
@@ -410,10 +394,10 @@ ActiveRecord::Schema.define(version: 20150409153833) do
   add_index "user_settings", ["staff_id", "name"], name: "index_user_settings_on_staff_id_and_name", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  limit: 255, null: false
-    t.integer  "item_id",                null: false
-    t.string   "event",      limit: 255, null: false
-    t.string   "whodunnit",  limit: 255
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
   end
