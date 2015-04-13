@@ -11,9 +11,8 @@ class ServicesController < ApplicationController
   api :GET, '/services/count', 'Returns a count of independent services across projects'
   def count
     authorize Service.new
-    load_tagged_services
-    response = { count: @services.values.count }
-    render json: response
+    load_services_via_sql
+    render json: { count: @services.size }
   end
 
   api :GET, '/services/:tag', 'Returns services with :tag'
