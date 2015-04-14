@@ -26,7 +26,10 @@ window.apiRoutes = {
     "staffOrders":       "/staff/:staff_id/orders/:id",
     "staffById":         "/staff/:id",
     "staffSearch":       "/staff?query=",
-    "currentMember":     "/staff/current_member"
+    "currentMember":     "/staff/current_member",
+
+    "groups":            "/groups",
+    "groupsById":        "/groups/:id"
 
   }
 }
