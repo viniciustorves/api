@@ -2,7 +2,7 @@
 
 /**@ngInject*/
 var GroupsResource = function($resource, apiResource, $state) {
-    var Groups = $resource(apiResource('groupById'), {'id': '@id'}, {
+    return $resource(apiResource('groupsById'), {'id': '@id'}, {
         // Get Single
         get: {
             method: 'GET',
@@ -30,8 +30,6 @@ var GroupsResource = function($resource, apiResource, $state) {
      Users.prototype.isAdmin = function() {
      return this.role === 'admin';
      };*/
-
-    return Groups;
 };
 
 window.GroupsResource = GroupsResource;

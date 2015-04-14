@@ -9,8 +9,6 @@
 #  description :text
 #
 
-class Group < ActiveRecord::Base
-  has_and_belongs_to_many :projects
-  has_many :memberships
-  has_many :staff, through: :memberships
+class GroupSerializer < ApplicationSerializer
+  attributes :id, :name, :description, :staff_ids
 end

@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150423163922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.text     "description"
   end
 
   create_table "groups_projects", force: :cascade do |t|
@@ -421,8 +422,8 @@ ActiveRecord::Schema.define(version: 20150423163922) do
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
-  add_foreign_key "groups_projects", "groups"
-  add_foreign_key "groups_projects", "projects"
-  add_foreign_key "memberships", "groups"
-  add_foreign_key "memberships", "staff"
+  add_foreign_key "groups_projects", "groups", on_delete: :cascade
+  add_foreign_key "groups_projects", "projects", on_delete: :cascade
+  add_foreign_key "memberships", "groups", on_delete: :cascade
+  add_foreign_key "memberships", "staff", on_delete: :cascade
 end
