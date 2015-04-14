@@ -35,7 +35,7 @@ gem 'responders'
 
 # Authentication
 gem 'devise'
-gem 'ruby-saml'
+gem 'ruby-saml', github: 'onelogin/ruby-saml'
 
 # Authorization
 gem 'pundit'
@@ -47,6 +47,9 @@ gem 'custom_configuration'
 gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'jellyfish_fog_aws'
+
+# Autoprefixer for CSS classes using Can I Use values.
+gem 'autoprefixer-rails'
 
 # Tests
 group :development, :test do
@@ -139,4 +142,7 @@ source 'http://rails-assets.org' do
   gem 'rails-assets-bootstrap3-datetimepicker'
   gem 'rails-assets-objectpath'
   gem 'rails-assets-tv4'
+  gem 'rails-assets-angular-nvd3'
+  gem 'rails-assets-ngDraggable'
+  gem 'rails-assets-angular-filter'
 end
