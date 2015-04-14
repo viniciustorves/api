@@ -3,6 +3,7 @@ class CreateGroupsMembershipsAndGroupProjects < ActiveRecord::Migration
     create_table :groups do |t|
       t.timestamps
       t.string :name
+      t.text :description
     end
 
     create_table :memberships do |t|

@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20150413183037) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.text     "description"
   end
 
   create_table "groups_projects", force: :cascade do |t|
@@ -239,6 +240,14 @@ ActiveRecord::Schema.define(version: 20150413183037) do
   end
 
   add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at", using: :btree
+
+  create_table "product_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.json     "questions_form_schema"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name",                 limit: 255

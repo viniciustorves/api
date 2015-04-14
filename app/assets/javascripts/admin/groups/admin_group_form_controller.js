@@ -7,11 +7,12 @@ var adminGroupsListState = 'base.authed.admin.groups.list';
  */
 
 /**@ngInject*/
-var AdminGroupFormController = function($state) {
+var AdminGroupFormController = function($state, UsersResource) {
 
   this.$state = $state;
   this.group = null;
   this.formSubmitted = false;
+  this.users = UsersResource.query();
 
   // Set the available roles.
   // @todo Should probably be pulled form the backend
@@ -28,6 +29,7 @@ var AdminGroupFormController = function($state) {
   ];
 
 };
+
 
 AdminGroupFormController.prototype = {
 

@@ -2,10 +2,11 @@
 #
 # Table name: groups
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
-#  name       :string
+#  id          :integer          not null, primary key
+#  created_at  :datetime
+#  updated_at  :datetime
+#  name        :string
+#  description :text
 #
 
 class Group < ActiveRecord::Base
