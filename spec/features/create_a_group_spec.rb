@@ -10,7 +10,10 @@ feature 'Group creation' do
 
     fill_in('Group Name', with: group.name)
     fill_in('Group Description', with: group.description)
-    selectize('#group_users', option: member_staff.email)
+    within('#users') do
+      find('.ui-select-search').click
+      find(:xpath, "//span[contains(text(),'#{member_staff.email}')]").click
+    end
     click_on 'CREATE NEW GROUP'
 
     expect(all('.group-box-cell')).to have_content(group.name)

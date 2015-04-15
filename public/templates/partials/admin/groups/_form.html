@@ -1,45 +1,26 @@
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('group_name')}">
-  <label class="col-sm-2 control-label" for="group_name">Group Name:</label>
+<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('name')}">
+  <label class="col-sm-2 control-label" for="name">Group Name:</label>
 
   <div class="col-sm-6 controls">
-    <input id="group_name" name="group_name" type="text" ng-model="adminGroupFormCtrl.group.group_name" ng-change="adminGroupFormCtrl.clearSubmitError('group_name')" class="form-control" required/>
+    <input id="name" name="name" type="text" ng-model="adminGroupFormCtrl.group.name" ng-change="adminGroupFormCtrl.clearSubmitError('name')" class="form-control" required/>
 
     <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_name', 'required')">Group Name is Required.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_name', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('group_name')}}</div>
+      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('name', 'required')">Group Name is Required.</div>
+      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('name', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('name')}}</div>
     </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('group_role')}">
-    <label class="col-sm-2 control-label">Group Role:</label>
+<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('description')}">
+    <label class="col-sm-2 control-label" for="description">Group Description:</label>
 
     <div class="col-sm-6 controls">
-        <ui-select id="group_role" name="group_role" ng-model="adminGroupFormCtrl.group.group_role" ng-change="adminGroupFormCtrl.clearSubmitError('group_role')" theme="selectize" required />
-        <ui-select-match>{{$select.selected.name}}</ui-select-match>
-        <ui-select-choices repeat="group_role.value as group_role in adminGroupFormCtrl.group_roles">
-            <span ng-bind-html-unsafe="group_role.name">{{group_role.name}}</span>
-        </ui-select-choices>
-        </ui-select>
+    <textarea id="description" name="description" type="text" ng-model="adminGroupFormCtrl.group.description" ng-change="adminGroupFormCtrl.clearSubmitError('description')" class="form-control"></textarea>
 
         <div class="help-block">
-            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_role', 'required')">Group Role is Required</div>
-            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_role', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('group_role')}}</div>
-        </div>
-    </div>
-    <div class="col-sm-4"></div>
-</div>
-
-<div class="form-group" ng-class="{'has-error': adminGroupFormCtrl.hasError('group_description')}">
-    <label class="col-sm-2 control-label" for="group_description">Group Description:</label>
-
-    <div class="col-sm-6 controls">
-    <textarea id="group_description" name="group_description" type="text" ng-model="adminGroupFormCtrl.group.group_description" ng-change="adminGroupFormCtrl.clearSubmitError('group_description')" class="form-control"></textarea>
-
-        <div class="help-block">
-            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_description', 'required')">Group Description is Required</div>
-            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('group_description', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('group_description')}}</div>
+            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('description', 'required')">Group Description is Required</div>
+            <div class="help-text" ng-show="adminGroupFormCtrl.hasError('description', 'submitError')">{{adminGroupFormCtrl.getSubmitErrorValue('description')}}</div>
         </div>
     </div>
     <div class="col-sm-4"></div>
@@ -47,14 +28,14 @@
 
 <div class="form-group">
     <div class="search-input">
-      <label class="col-sm-2 control-label" for="group_users">Users:</label>
+      <label class="col-sm-2 control-label" for="staff_ids">Users:</label>
 
       <div class="col-sm-6">
-      <ui-select multiple id="group_users" name="group_users" ng-model="adminGroupFormCtrl.group.group_users" theme="bootstrap" close-on-select="true" sortable="true" class="col-sm-6 controls" required>
+      <ui-select multiple id="users" name="staff_ids" ng-model="adminGroupFormCtrl.group.staff_ids" theme="bootstrap" close-on-select="true" sortable="true" class="col-sm-6 controls" required>
         <ui-select-match placeholder="Select users...">
           {{$item.fullName()}} &lt;{{$item.email}}&gt;
         </ui-select-match>
-        <ui-select-choices repeat="user in adminGroupFormCtrl.users | propsFilter: {first_name: $select.search, last_name: $select.search, email: $select.search}">
+        <ui-select-choices repeat="user.id as user in adminGroupFormCtrl.users | propsFilter: {first_name: $select.search, last_name: $select.search, email: $select.search}">
           <span ng-bind-html="user.fullName() | highlight: $select.search"></span>
           &lt;<span ng-bind-html="user.email | highlight: $select.search"></span>&gt;
         </ui-select-choices>
