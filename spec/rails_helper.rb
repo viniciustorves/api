@@ -20,6 +20,7 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.include ActiveModelSerializers
   config.include BackgroundJobs
   config.include Features, type: :feature
   config.before :suite do
