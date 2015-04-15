@@ -20,10 +20,12 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.include ActiveModelSerializersHelper, type: :request
   config.include BackgroundJobs
   config.include Features, type: :feature
   config.before :suite do
     Warden.test_mode!
   end
+
   Capybara.javascript_driver = :poltergeist
 end

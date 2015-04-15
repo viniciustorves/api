@@ -26,3 +26,6 @@ Metrics/AbcSize:
 
 Style/GlobalVars:
   AllowedVariables: [$evm]
+
+Rails/HasAndBelongsToMany:
+  Enabled: false

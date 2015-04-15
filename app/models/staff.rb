@@ -40,12 +40,13 @@ class Staff < ActiveRecord::Base
   acts_as_taggable
 
   has_many :authentications
-  has_many :groups, through: :memberships
-  has_many :memberships
+  has_many :memberships, through: :groups
   has_many :notifications
   has_many :orders
-  has_many :projects, through: :groups
+  has_many :projects, through: :memberships
   has_many :user_settings
+
+  has_and_belongs_to_many :groups
 
   has_one :cart
 

@@ -86,13 +86,13 @@ RSpec.describe 'Alerts API' do
       staff = create :staff
       project = create :project
       staff.groups << Group.new(projects: [project])
-      _visible = create :alert, :active, project: project
-      _invisible = create :alert, :active
+      visible = create(:alert, :active, project: project)
+      create(:alert, :active)
       sign_in_as staff
 
       get '/api/v1/alerts'
 
-      expect(json.length).to eq(1)
+      expect(response.body).to eq([visible].to_json)
     end
   end
 
