@@ -1,7 +1,7 @@
 'use strict';
 
 /**@ngInject*/
-function ProjectController($interval, project, OrderItemsResource, alerts, products, FlashesService) {
+function ProjectController($interval, project, OrderItemsResource, alerts, products, groups, FlashesService) {
 
   this.intervalDelay = 30000;
   this.$interval = $interval;
@@ -19,6 +19,7 @@ function ProjectController($interval, project, OrderItemsResource, alerts, produ
 
   this.FlashesService = FlashesService;
 
+  this.groups = groups;
   /**
    * On creation/transition to scope, start refresh interval if
    * we need to to reload unfinished service data.
@@ -45,6 +46,10 @@ ProjectController.resolve = {
   /**@ngInject*/
   products: function(ProductsResource) {
     return ProductsResource.query().$promise;
+  },
+  /**@ngInject*/
+    groups: function(GroupsResource) {
+        return GroupsResource.query().$promise;
   }
 };
 

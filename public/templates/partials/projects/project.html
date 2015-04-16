@@ -137,16 +137,14 @@
 
           <div class="search-input">
               <label class="col-sm-2 control-label" for="group_ids">Add a Group:</label>
-
+              {{groups}}
               <div class="col-sm-6">
-                  <angucomplete-alt id=""
-                                    placeholder="Group Search"
+                  <angucomplete-alt id="groups"
+                                    placeholder="Search groups"
                                     pause="400"
-                                    selected-object="lastSelected"
-                                    remote-url="{{searchURL}}"
-                                    title-field="name"
-                                    description-field=""
-                                    input-class="form-control"</angucomplete-alt>
+                                    selected-object="group"
+                                    local-data="groups">
+                  </angucomplete-alt>
 
                   <br>
 
