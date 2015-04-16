@@ -132,23 +132,21 @@
     </div>
 
       <!-- Groups -->
-      <div class="project-users" ng-show="projectCtrl.project.approval == 'approved'">
+      <div class="project-groups" ng-show="projectCtrl.project.approval == 'approved'">
           <section-header name="{{'Groups (' + projectCtrl.project.groups.length + ')'}}">
 
           <div class="search-input">
-              <label class="col-sm-2 control-label" for="staff_ids">Add a Group:</label>
+              <label class="col-sm-2 control-label" for="group_ids">Add a Group:</label>
 
               <div class="col-sm-6">
-                  <angucomplete-alt id="members"
+                  <angucomplete-alt id=""
                                     placeholder="Group Search"
                                     pause="400"
                                     selected-object="lastSelected"
                                     remote-url="{{searchURL}}"
-                                    title-field="first_name,last_name"
-                                    description-field="email"
-                                    input-class="form-control form-control-small"
-                                    imagefield="gravatar"
-                                    imageuri="http://www.gravatar.com/avatar/"></angucomplete-alt>
+                                    title-field="name"
+                                    description-field=""
+                                    input-class="form-control"</angucomplete-alt>
 
                   <br>
 
