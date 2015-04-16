@@ -9,7 +9,7 @@ RSpec.describe 'Groups API' do
 
       get group_path(group, format: :json)
 
-      expect(response.body).to eq serialize(group)
+      expect(response.body).to match_serialized_json(group)
     end
   end
 
@@ -19,7 +19,7 @@ RSpec.describe 'Groups API' do
 
       get groups_path(format: :json)
 
-      expect(response.body).to eq serialize(groups)
+      expect(response.body).to match_serialized_json(groups)
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe 'Groups API' do
       post groups_path, group_attributes
 
       group = Group.last
-      expect(response.body).to eq serialize(group)
+      expect(response.body).to match_serialized_json(group)
     end
   end
 

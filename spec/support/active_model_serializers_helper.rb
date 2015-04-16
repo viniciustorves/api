@@ -1,10 +1,12 @@
 module ActiveModelSerializersHelper
-  def serialize(object)
+  def match_serialized_json(object)
     if object.is_a?(Array)
-      serialize_array(object)
+      expected = serialize_array(object)
     else
-      serializer(object).new(object).to_json(root: false)
+      expected = serializer(object).new(object).to_json(root: false)
     end
+
+    eq(expected)
   end
 
   private
