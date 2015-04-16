@@ -1,4 +1,4 @@
-module ActiveModelSerializers
+module ActiveModelSerializersHelper
   def serialize(object)
     if object.is_a?(Array)
       serialize_array(object)
