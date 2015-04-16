@@ -131,6 +131,54 @@
       </section-header>
     </div>
 
+      <!-- Groups -->
+      <div class="project-users" ng-show="projectCtrl.project.approval == 'approved'">
+          <section-header name="{{'Groups (' + projectCtrl.project.groups.length + ')'}}">
+
+          <div class="search-input">
+              <label class="col-sm-2 control-label" for="staff_ids">Add a Group:</label>
+
+              <div class="col-sm-6">
+                  <angucomplete-alt id="members"
+                                    placeholder="Group Search"
+                                    pause="400"
+                                    selected-object="lastSelected"
+                                    remote-url="{{searchURL}}"
+                                    title-field="first_name,last_name"
+                                    description-field="email"
+                                    input-class="form-control form-control-small"
+                                    imagefield="gravatar"
+                                    imageuri="http://www.gravatar.com/avatar/"></angucomplete-alt>
+
+                  <br>
+
+                  <p class="section-header">
+                      Groups to add: ({{userAdditonCount}})
+                  </p>
+
+                  </br>
+
+                  <p ng-if="userAdditonCount === 0">
+                      No groups selected.
+                  </p>
+
+                  <div class="list-group">
+                      <a href="#" class="list-group-item" ng-repeat="(email, userAddition) in userAdditons" ng-click="removeUser(email)">
+                          <img src="{{userAddition.image}}"/>
+                          <div class="left-most">
+                              <h4 class="list-group-item-heading">{{userAddition.title}}</h4>
+                              <p class="list-group-item-text">{{userAddition.description}}</p>
+                          </div>
+                          <div class="right-most">
+                              <i class="fa fa-remove"></i>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="col-sm-4"></div>
+          </div>
+      </div>
+
     <!-- Project Details -->
 
     <div class="project-details">
