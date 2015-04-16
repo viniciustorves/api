@@ -33,4 +33,15 @@ RSpec.describe 'Groups API' do
       expect(response.body).to eq serialize(group)
     end
   end
+
+  describe 'DELETE destroy' do
+    it 'deletes a group' do
+      group = create(:group)
+
+      delete group_path(group)
+
+      expect(response).to be_successful
+      expect(Group.find_by_id(group.id)).to be_nil
+    end
+  end
 end
