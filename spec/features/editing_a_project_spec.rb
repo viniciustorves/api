@@ -16,6 +16,6 @@ feature 'Project edit' do
     end
     click_on 'CREATE NEW GROUP'
 
-    expect(all('.group-box-cell')).to have_content(group.name)
+    expect(page.body).to have_css('.group-title', text: group.name)
   end
 end
