@@ -137,13 +137,17 @@
 
           <div class="search-input">
               <label class="col-sm-2 control-label" for="group_ids">Add a Group:</label>
-              {{groups}}
+
               <div class="col-sm-6">
-                  <angucomplete-alt id="groups"
-                                    placeholder="Search groups"
-                                    pause="400"
-                                    selected-object="group"
-                                    local-data="groups">
+                  <angucomplete-alt
+                          id=""
+                          placeholder="Enter a Group Name"
+                          pause="400"
+                          local-data="groups"
+                          search-fields="name"
+                          title-field="name"
+                          min-length="1"
+                          input-class="form-control form-control-small" >
                   </angucomplete-alt>
 
                   <br>
@@ -153,7 +157,7 @@
                   </p>
 
                   </br>
-
+                  {{groups}}
                   <p ng-if="userAdditonCount === 0">
                       No groups selected.
                   </p>
