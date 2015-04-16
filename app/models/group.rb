@@ -10,7 +10,7 @@
 #
 
 class Group < ActiveRecord::Base
-  has_and_belongs_to_many :projects
+  has_and_belongs_to_many :staff
   has_many :memberships
-  has_many :staff, through: :memberships
+  has_many :projects, through: :memberships
 end

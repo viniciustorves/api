@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   api :POST, '/groups', 'Creates group'
   param :name, String, desc: 'Group Name', required: true
-  param :description, String, desc: 'Group Description', required: true
+  param :description, String, desc: 'Group Description'
+  param :staff_ids, Array
   error code: 422, desc: ParameterValidation::Messages.missing
 
   def create
@@ -28,7 +29,8 @@ class GroupsController < ApplicationController
   api :PUT, '/groups/:id', 'Updates group with :id'
   param :id, :number, required: true
   param :name, String, desc: 'Group Name', required: true
-  param :description, String, desc: 'Group Description', required: true
+  param :description, String, desc: 'Group Description'
+  param :staff_ids, Array
   error code: 404, desc: MissingRecordDetection::Messages.not_found
   error code: 422, desc: ParameterValidation::Messages.missing
 
