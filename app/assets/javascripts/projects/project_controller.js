@@ -21,7 +21,7 @@ function ProjectController($interval, $scope, project, OrderItemsResource, alert
 
   this.groups = groups;
     
-  $scope.searchURL = apiResource("groups");
+  $scope.searchURL = apiResource("groupSearch");
   $scope.groups= apiResource("groups");
   /**
    * On creation/transition to scope, start refresh interval if

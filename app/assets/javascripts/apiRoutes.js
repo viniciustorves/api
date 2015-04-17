@@ -29,7 +29,8 @@ window.apiRoutes = {
     "currentMember":     "/staff/current_member",
 
     "groups":            "/groups",
-    "groupsById":        "/groups/:id"
+    "groupsById":        "/groups/:id",
+    "groupSearch":       "/groups?query="
 
   }
 }
