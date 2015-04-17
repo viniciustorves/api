@@ -20,7 +20,7 @@ function ProjectController($interval, $scope, project, OrderItemsResource, alert
   this.FlashesService = FlashesService;
 
   this.groups = groups;
-    
+
   $scope.searchURL = apiResource("groupSearch");
   $scope.groups= apiResource("groups");
   /**
