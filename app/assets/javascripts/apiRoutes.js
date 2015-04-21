@@ -30,7 +30,11 @@ window.apiRoutes = {
 
     "groups":            "/groups",
     "groupsById":        "/groups/:id",
-    "groupSearch":       "/groups?query="
+    "groupSearch":       "/groups?query=",
+
+    "services":           "/services",
+    "serviceAll":         "/services/all_count",
+    "serviceProject":     "/services/project_count"
 
   }
-}
+};

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Staff signs in' do
   scenario 'normal staff successfully signs in with email and password', :js do
-    visit root_path
+    visit root_path + '/login'
     staff = create(:staff)
 
     fill_in 'email', with: staff.email
@@ -10,5 +10,26 @@ feature 'Staff signs in' do
     click_on 'Login'
 
     expect(page).to have_content("#{staff.first_name} #{staff.last_name}")
+  end
+
+  feature 'using OmniAuth modules' do
+    scenario 'normal staff successfully signs in with email using OmniAuth developer strategy', :js do
+      visit '/api/v1/staff/auth/developer'
+      staff = create(:staff)
+
+      fill_in 'email', with: staff.email
+      click_button 'Sign In'
+
+      expect(page).to have_content("#{staff.first_name} #{staff.last_name}")
+    end
+
+    scenario 'normal staff fails signing in with email using OmniAuth developer strategy', :js do
+      visit '/api/v1/staff/auth/developer'
+
+      fill_in 'email', with: 'user@nonexistant.com'
+      click_button 'Sign In'
+
+      expect(page).to have_content('{"error":"Not found."}')
+    end
   end
 end

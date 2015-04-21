@@ -27,3 +27,4 @@
 #Ingore the license finder reports
 /doc/dependencies*
 .env
+public/templates/partials/projects/add_users_modal.html

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :user_setting_options, defaults: { format: :json }
 
     # Approvals
-    resources :staff, defaults: { format: :json, methods: %w(gravatar) }, only: [:index]
+    resources :staff, defaults: { format: :json }, only: [:index]
     resources :staff, defaults: { format: :json }, only: [:show, :create, :update, :destroy] do
       # Staff Orders
       resources :orders, controller: :staff_orders, defaults: { format: :json, includes: %w(order_items) }, only: [:show, :index]
@@ -82,6 +82,13 @@ Rails.application.routes.draw do
     resources :clouds, except: [:edit, :new], defaults: { format: :json }
 
     resources :bundles, except: [:edit, :new]
+
+    # Services (Alias for OrderItem)
+    get 'services' => 'services#index', as: :services_index
+    get 'services/count' => 'services#count', as: :services_count
+    get 'services/all_count' => 'services#all_count', as: :services_all_count
+    get 'services/project_count' => 'services#project_count', as: :services_project_count
+    get 'services/:tag' => 'services#show', as: :services_show
 
     # Project Routes
     resources :projects, defaults: { format: :json }, except: [:edit, :new]

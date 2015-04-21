@@ -4,7 +4,7 @@ class SamlController < ApplicationController
   def init
     respond_to do |format|
       format.html { redirect_to sso_saml_index_url }
-      format.json { render json: { url: metadata_saml_index_url } }
+      format.json { render json: { url: init_saml_index_url } }
     end
   end
 
@@ -30,7 +30,6 @@ class SamlController < ApplicationController
         staff = Staff.new
         staff.email = response.name_id
         staff.password = Devise.friendly_token.first(8)
-        authorize staff
         staff.save!
       end
 

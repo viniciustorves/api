@@ -47,6 +47,7 @@ class Staff < ActiveRecord::Base
   has_many :alerts, through: :projects
 
   has_and_belongs_to_many :groups
+  has_many :authentications
 
   has_one :cart
 
@@ -63,7 +64,20 @@ class Staff < ActiveRecord::Base
 
   pg_search_scope :search, against: [:first_name, :last_name, :email], using: { tsearch: { prefix: true } }
 
-  def gravatar
-    '3fc88b95c85e43f157cb1ffd0e37e832'
+  def self.find_by_auth(auth_hash)
+    auth_match = Authentications.find_by(provider: auth_hash['provider'], uid: auth_hash['uid'].to_s)
+
+    if auth_match
+      staff = Staff.find(auth_match.staff_id)
+    else
+      staff = Staff.find_by!(email: auth_hash['info']['email'])
+    end
+
+    if staff
+      staff.ensure_authentication_token
+      Authentications.create staff_id: staff.id, provider: auth_hash['provider'], uid: auth_hash['uid'].to_s
+    end
+
+    staff
   end
 end
