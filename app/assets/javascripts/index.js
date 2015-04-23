@@ -35,7 +35,8 @@ angular.module("broker", [
   "schemaForm",
   "nvd3",
   "ngDraggable",
-  "angular.filter"
+  "angular.filter",
+  "ngAria"
 ]).run(
   /**@ngInject*/
   function($http, $rootScope, $log, $location, AuthService, UsersResource, Session, $urlRouter, ROUTES, $state, APP_CONFIG, FlashesService) {
