@@ -1,7 +1,7 @@
 'use strict';
 
 /**@ngInject*/
-function ProjectController($scope, $interval, project, OrderItemsResource, alerts, products, FlashesService, groups) {
+function ProjectController($scope, $interval, project, OrderItemsResource, MembershipsResource, alerts, products, FlashesService, groups) {
 
   $scope.intervalDelay = 30000;
   $scope.$interval = $interval;
@@ -16,14 +16,27 @@ function ProjectController($scope, $interval, project, OrderItemsResource, alert
   $scope.products = products;
 
   $scope.OrderItemsResource = OrderItemsResource;
+  // $scope.MembershipsResource = MembershipsResource;
 
   $scope.FlashesService = FlashesService;
 
   $scope.groups = groups;
 
-  $scope.addGroupToProject = function(group, project) {
-    project.groups.push(group);
-    project.$save;
+  $scope.addGroupToProject = function(group) {
+      $scope.project.groups.push(group)
+      new MembershipsResource(
+        {
+          group_id: group.id
+        }
+      ).$save({projectId: $scope.project.id})
+  }
+
+  $scope.removeGroupFromProject = function(group) {
+      _.remove($scope.project.groups, {id: group.id});
+      MembershipsResource.delete({
+        projectId: $scope.project.id,
+        groupId: group.id
+      });
   }
 }
 

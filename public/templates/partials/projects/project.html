@@ -132,8 +132,8 @@
 
     <section-header name="Groups">
       <ui-select id="group_search" name="group_search"
-      ng-model="project" theme="selectize"
-      on-select="addGroupToProject($item, project)">
+      ng-model="group" theme="selectize"
+      on-select="addGroupToProject($item)">
         <ui-select-match></ui-select-match>
         <ui-select-choices repeat="group in groups">
           {{group.name}}
@@ -143,7 +143,7 @@
       <ul id="groups-list">
         <li ng-attr-id="{{'group-' + group.id}}" class="group" ng-repeat="group in project.groups">
           {{group.name}}
-          <a href="#" ng-click="removeGroupFromProject(project.id, group.id)">x</a>
+          <a href="#" ng-click="removeGroupFromProject(group)">x</a>
         </li>
       </ul>
     </section-header>

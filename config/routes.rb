@@ -92,6 +92,8 @@ Rails.application.routes.draw do
 
     # Project Routes
     resources :projects, defaults: { format: :json }, except: [:edit, :new]
+    post 'projects/:project_id/groups' => 'affiliations#create', as: :affiliations
+    delete 'projects/:project_id/groups/:group_id' => 'affiliations#destroy', as: :affiliation
     get 'projects/:project_id/staff' => 'project_staff#index', as: :project_staff_index
     post 'projects/:project_id/staff/:id' => 'project_staff#create', as: :project_staff
     delete 'projects/:project_id/staff/:id' => 'project_staff#destroy'

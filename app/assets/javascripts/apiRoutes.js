@@ -12,6 +12,8 @@ window.apiRoutes = {
     "orders":            "/orders/:id",
     "orderItems":        "/order_items/:id",
 
+    "projectGroups":     "/projects/:projectId/groups",
+    "projectGroupById":  "/projects/:projectId/groups/:groupId",
     "projectsById":      "/projects/:id",
     "projectQuestions":  "/project_questions/:id",
     "servicesById":      "/services/:id",
