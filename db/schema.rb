@@ -403,6 +403,7 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   create_table "user_settings", force: :cascade do |t|
     t.integer  "staff_id"
     t.string   "name",       limit: 255
+    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"

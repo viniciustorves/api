@@ -10,6 +10,7 @@ feature 'Add group to project', js: true do
     fill_in '#groups_search', with: group.name
     #click enter
     expect(find('.groups-list')).to have_content(group.name)
+    expect(find('.groups-list')).to have_selector("group-#{group.id}")
 
     expect(project.groups).to include(group)
   end
