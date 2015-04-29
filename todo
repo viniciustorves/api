@@ -1,0 +1,23 @@
+I'd envisioned giving Memberships a relationship to Role, which would define that sort of setting. You'd make a new Role to modify permissions, and the combination of a Memberships Staff, Role, Group, and Projects define what they can do where.
+
+```
+Groups
+├── Memberships
+│   ├── Staff
+│   └── Roles => approve some step, edit budget, add staff, etc.
+└── Projects
+```
+
+```
+ProjectPolicy:
+  update?:
+    user.roles_for(group).allow?(:update?)
+
+User
+  roles_for(group):
+    roles.joins(:memberships).where('memberships.group_id = ?', group.id)
+
+Role
+  self.allow?(permission):
+    exist?(permissions: permission)
+```

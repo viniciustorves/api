@@ -6,7 +6,6 @@
 #  name        :string(255)
 #  description :text
 #  cc          :string(10)
-#  staff_id    :string(255)
 #  img         :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime

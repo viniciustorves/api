@@ -17,7 +17,6 @@ class ProjectsController < ApplicationController
       api.param :project_answers, Array, desc: 'Project answers', required: false do
         api.param :project_question_id, :number, desc: 'Id for valid project question', require: true
       end
-      api.param :staff_id, String
     end
   end
 
@@ -31,7 +30,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = query_with policy_scope(Project).main_inclusions, :includes, :pagination
-    authorize_and_normalize(Project.new)
+    authorize_and_normalize(current_user.projects.new)
     respond_with_params projects
   end
 
@@ -53,7 +52,7 @@ class ProjectsController < ApplicationController
 
   def create
     authorize Project
-    project = Project.create project_params
+    project = current_user.projects.create project_params
     respond_with_params project
   end
 
@@ -83,7 +82,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    @_project_params ||= params.permit(:name, :description, :cc, :budget, :staff_id, :start_date, :end_date, :approved, :img, project_answers: [:project_question_id, :answer, :id]).tap do |project|
+    @_project_params ||= params.permit(:name, :description, :cc, :budget, :start_date, :end_date, :approved, :img, project_answers: [:project_question_id, :answer, :id]).tap do |project|
       if params[:project_answers]
         project[:project_answers_attributes] = project.delete(:project_answers)
       end
@@ -104,6 +103,6 @@ class ProjectsController < ApplicationController
   end
 
   def project
-    @_project ||= Project.find(params[:id])
+    @_project ||= current_user.projects.find(params[:id])
   end
 end

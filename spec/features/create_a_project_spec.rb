@@ -16,5 +16,6 @@ feature 'Project creation' do
     find('a', text: 'CREATE').click
 
     expect(page).to have_content('Project created successfully.')
+    expect(Project.last.staff_id).to eq staff.id
   end
 end

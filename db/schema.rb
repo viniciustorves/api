@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423163922) do
+ActiveRecord::Schema.define(version: 20150429191707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -323,7 +323,6 @@ ActiveRecord::Schema.define(version: 20150423163922) do
     t.string   "name",        limit: 255
     t.text     "description"
     t.string   "cc",          limit: 10
-    t.string   "staff_id",    limit: 255
     t.string   "img",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -365,6 +364,14 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   add_index "staff", ["deleted_at"], name: "index_staff_on_deleted_at", using: :btree
   add_index "staff", ["email"], name: "index_staff_on_email", unique: true, using: :btree
   add_index "staff", ["reset_password_token"], name: "index_staff_on_reset_password_token", unique: true, using: :btree
+
+  create_table "staff_projects", force: :cascade do |t|
+    t.integer "staff_id"
+    t.integer "project_id"
+  end
+
+  add_index "staff_projects", ["project_id"], name: "index_staff_projects_on_project_id", using: :btree
+  add_index "staff_projects", ["staff_id", "project_id"], name: "index_staff_projects_on_staff_id_and_project_id", unique: true, using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -424,7 +431,5 @@ ActiveRecord::Schema.define(version: 20150423163922) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "groups_staff", "groups", on_delete: :cascade
-  add_foreign_key "groups_staff", "staff", on_delete: :cascade
   add_foreign_key "memberships", "groups", on_delete: :cascade
-  add_foreign_key "memberships", "projects", on_delete: :cascade
 end
