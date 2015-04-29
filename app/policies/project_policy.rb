@@ -38,7 +38,9 @@ class ProjectPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.admin?
+      if user.blank?
+        scope.none
+      elsif user.admin?
         scope
       else
         user.projects
