@@ -32,9 +32,9 @@ namespace :sample do
     Cloud.connection.execute("ALTER SEQUENCE clouds_id_seq RESTART #{Cloud.all.order('id DESC').first.id + 1}")
 
     Product.create!([
-       { id: 1, name: "Small", description: "Small EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "1.99", hourly_price: "0.001", monthly_price: "0.05" },
-       { id: 2, name: "Medium", description: "Medium EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "2.99", hourly_price: "0.0025", monthly_price: "0.075" },
-       { id: 3, name: "Large", description: "Large EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "3.99", hourly_price: "0.0055", monthly_price: "0.12" },
+       { id: 1, name: "Small", description: "Small EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.026", monthly_price: "0.0" },
+       { id: 2, name: "Medium", description: "Medium EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.06", monthly_price: "0.0" },
+       { id: 3, name: "Large", description: "Large EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.3", monthly_price: "0.0" },
        { id: 5, name: "Medium MySQL", description: "Medium MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: "1.99", hourly_price: "0.004", monthly_price: "0.1" },
        { id: 6, name: "Medium PostgreSQL", description: "Medium PostgreSQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: "2.99", hourly_price: "0.004", monthly_price: "0.25" },
        { id: 7, name: "Large PostgreSQL", description: "Large PostgreSQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: "3.99", hourly_price: "0.009", monthly_price: "0.5" },
@@ -55,9 +55,9 @@ namespace :sample do
        { id: 26, name: "1GB NetApps Storage", description: "NetApps Storage", active: true, img: "products/netapp.png", deleted_at: nil, product_type: "Storage", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 10, name: "S3 Storage", description: "", active: true, img: "products/aws_s3.png", deleted_at: nil, product_type: "Storage", setup_price: "1.0", hourly_price: "1.0", monthly_price: "1.0" },
        { id: 28, name: "Teradata", description: "Teradata", active: true, img: "products/teradata.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
-       { id: 31, name: "RHEL 6 Large ", description: "Large RHEL 6 Instance", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
-       { id: 32, name: "RHEL 6 Medium", description: "RHEL 6 Medium", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
-       { id: 30, name: "RHEL 6 Small ", description: "Small RHEL 6 Instance", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
+       { id: 31, name: "RHEL 6 Large ", description: "Large RHEL 6 Instance", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.7", monthly_price: "0.0" },
+       { id: 32, name: "RHEL 6 Medium", description: "RHEL 6 Medium", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.2", monthly_price: "0.0" },
+       { id: 30, name: "RHEL 6 Small ", description: "Small RHEL 6 Instance", active: true, img: "products/redhat.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.08", monthly_price: "0.0" },
        { id: 33, name: "Apache Web Server ", description: "Apache Web Server", active: true, img: "products/apache.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 34, name: "MS Exchange Server", description: "MS Exchange Server", active: true, img: "products/exchange.png", deleted_at: nil, product_type: "Platforms", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 27, name: "100 Node Hadoop Cluster", description: nil, active: true, img: "products/hadoop.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
