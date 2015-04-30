@@ -61,7 +61,10 @@ namespace :sample do
        { id: 33, name: "Apache Web Server ", description: "Apache Web Server", active: true, img: "products/apache.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 34, name: "MS Exchange Server", description: "MS Exchange Server", active: true, img: "products/exchange.png", deleted_at: nil, product_type: "Platforms", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 27, name: "100 Node Hadoop Cluster", description: nil, active: true, img: "products/hadoop.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
-       { id: 29, name: "10 Node Hadoop Cluster", description: nil, active: true, img: "products/hadoop.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" }
+       { id: 29, name: "10 Node Hadoop Cluster", description: nil, active: true, img: "products/hadoop.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
+       { id: 35, name: "Monte Carlo", description: "Monte Carlo Simulation", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
+       { id: 36, name: "Linear Regression", description: "Standard Linear Regression", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
+       { id: 37, name: "Neural Network", description: "Neural Network Modeling", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" }
     ])
     Product.connection.execute("ALTER SEQUENCE products_id_seq RESTART #{Product.all.order('id DESC').first.id + 1}")
 
