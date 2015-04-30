@@ -64,7 +64,12 @@ namespace :sample do
        { id: 29, name: "10 Node Hadoop Cluster", description: nil, active: true, img: "products/hadoop.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 35, name: "Monte Carlo", description: "Monte Carlo Simulation", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
        { id: 36, name: "Genome Modeling", description: "3D Genomic Modeling", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" },
-       { id: 37, name: "Neural Network", description: "Neural Network Modeling", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" }
+       { id: 37, name: "Neural Network", description: "Neural Network Modeling", active: true, img: "products/algorithm.png", deleted_at: nil, product_type: "Big Data", setup_price: "10.0", hourly_price: "10.0", monthly_price: "10.0" } ,
+       { id: 38, name: "Satellite Data", description: "Satellite Data from Eastern Hemisphere", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" },
+       { id: 39, name: "Air Traffic Logs", description: "Air Traffic Controller Logs", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" },
+       { id: 40, name: "Human Genome", description: "Sequenced Human Genome", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" },
+       { id: 41, name: "Ebola Genome", description: "Ebola Virus Genome", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" },
+       { id: 42, name: "Anthrax Genome", description: "Bacillus Anthracis Genome", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" }
     ])
     Product.connection.execute("ALTER SEQUENCE products_id_seq RESTART #{Product.all.order('id DESC').first.id + 1}")
 

@@ -64,6 +64,11 @@
         "title": "Big Data",
         "description": "Big Data Solutions"
     },
+    "Datasets": {
+        "type": "object",
+        "title": "Datasets",
+        "description": "Available Datasets"
+    },
     "Storage": {
         "type": "object",
         "title": "Storage",
