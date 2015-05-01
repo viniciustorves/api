@@ -30,4 +30,4 @@
 //= require angular-nvd3
 //= require ngDraggable
 //= require angular-filter
-//= require ng-aria
+//= require angular-aria
