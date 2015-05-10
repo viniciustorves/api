@@ -77,7 +77,14 @@ class OrderItem < ActiveRecord::Base
   end
 
   def provision
-    provisioner.delay(queue: 'provision_request').provision(id)
+    product = Product.find_by(id: product_id)
+    p = provisioner
+    if product.name.include?('AWS')
+      p = Rails.configuration.x.provisioners.fetch('AWS Fog Databases') if product.product_type.name.include?('Databases')
+      p = Rails.configuration.x.provisioners.fetch('AWS Fog Storage') if product.product_type.name.include?('Storage')
+      p = Rails.configuration.x.provisioners.fetch('AWS Fog Infrastructure') if product.product_type.name.include?('Infrastructure')
+    end
+    p.delay(queue: 'provision_request').provision(id)
   end
 
   def update_order_total
