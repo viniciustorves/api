@@ -32,9 +32,9 @@ namespace :sample do
     Cloud.connection.execute("ALTER SEQUENCE clouds_id_seq RESTART #{Cloud.all.order('id DESC').first.id + 1}")
 
     Product.create!([
-       { id: 1, name: "Small", description: "Small EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.026", monthly_price: "0.0" },
-       { id: 2, name: "Medium", description: "Medium EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.06", monthly_price: "0.0" },
-       { id: 3, name: "Large", description: "Large EC2 Instance", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: "0.0", hourly_price: "0.3", monthly_price: "0.0" },
+       { id: 1, name: "AWS Small", description: "t2.small EC2", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: 0.0, hourly_price: 0.026, monthly_price: 0.0, provisioning_answers: '{"instance_size":"t1.micro","disk_size":"20"}'},
+       { id: 2, name: "AWS Medium", description: "m3.medium EC2", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: 0.0, hourly_price: 0.080, monthly_price: 0.0, provisioning_answers: '{"instance_size":"t1.micro","disk_size":"20"}'},
+       { id: 3, name: "AWS Large", description: "m3.large EC2", active: true, img: "products/aws_ec2.png", deleted_at: nil, product_type: "Infrastructure", setup_price: 0.0, hourly_price: 0.013, monthly_price: 0.14, provisioning_answers: '{"instance_size":"t1.micro","disk_size":"20"}'},
        { id: 5, name: "Medium MySQL", description: "Local MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "", setup_price: "1.99", hourly_price: "0.004", monthly_price: "0.1" },
        { id: 6, name: "Medium PostgreSQL", description: "Local PostgreSQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: "2.99", hourly_price: "0.004", monthly_price: "0.25" },
        { id: 7, name: "Large PostgreSQL", description: "Local PostgreSQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: "3.99", hourly_price: "0.009", monthly_price: "0.5" },
@@ -72,13 +72,13 @@ namespace :sample do
        { id: 42, name: "Anthrax Genome", description: "Bacillus Anthracis Genome", active: true, img: "products/dataset.png", deleted_at: nil, product_type: "Datasets", setup_price: "0.0", hourly_price: "0.0", monthly_price: "0.0" },
        { id: 43, name: "AWS Small MySQL", description: "t2.small MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: 0.0, hourly_price: 0.034, monthly_price: 0.0, provisioning_answers: '{"DBInstanceClass":"db.t2.small","AllocatedStorage":"20","StorageType":"standard","availability":"reduced","Engine":"mysql"}' },
        { id: 44, name: "AWS Medium MySQL", description: "m3.medium MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: 0.0, hourly_price: 0.090, monthly_price: 0.0, provisioning_answers: '{"DBInstanceClass":"db.m3.medium","AllocatedStorage":"40","StorageType":"standard","availability":"reduced","Engine":"mysql"}' },
-       { id: 45, name: "AWS Large MySQL", description: "m3.large MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: 0.0, hourly_price: 0.185, monthly_price: 0.0, provisioning_answers: '{"DBInstanceClass":"db.m3.large","AllocatedStorage":"60","StorageType":"standard","availability":"reduced","Engine":"mysql"}' }
+       { id: 45, name: "AWS Large MySQL", description: "m3.large MySQL", active: true, img: "products/aws_rds.png", deleted_at: nil, product_type: "Databases", setup_price: 0.0, hourly_price: 0.185, monthly_price: 0.0, provisioning_answers: '{"DBInstanceClass":"db.m3.large","AllocatedStorage":"60","StorageType":"standard","availability":"reduced","Engine":"mysql"}' },
     ])
     Product.connection.execute("ALTER SEQUENCE products_id_seq RESTART #{Product.all.order('id DESC').first.id + 1}")
 
 
     Project.create!([
-       { id: 1, name: "Analytics Platform", description: "Project description", cc: "--CC--", budget: 85000.0, staff_id: "--STAFF_ID--", start_date: "2015-02-06", end_date: "2015-11-06", img: "images/documentation.png", deleted_at: nil, spent: 0.0, status: 0, approval: 0},
+       { id: 1, name: "Analytics Platform", description: "Project description", cc: "--CC--", budget: 30000.0, staff_id: "--STAFF_ID--", start_date: "2015-02-06", end_date: "2015-11-06", img: "images/documentation.png", deleted_at: nil, spent: 0.0, status: 0, approval: 0},
        { id: 2, name: "Mobile App API", description: "Project description", cc: "--CC--", budget: 5000.0, staff_id: "--STAFF_ID--", start_date: "2015-02-06", end_date: "2015-11-06", img: "images/icon-mobile-orange.png", deleted_at: nil, spent: 2000.0, status: 0, approval: 1},
        { id: 3, name: "Blog", description: "Project description", cc: "--CC--", budget: 10000, staff_id: "--STAFF_ID--", start_date: "2015-02-06", end_date: "2015-11-06", img: "images/128x128-wordpress.png", deleted_at: nil, spent: 4135.03, status: 0, approval: 1},
        { id: 4, name: "Cloud File Share", description: "Project description", cc: "--CC--", budget: 1000.0, staff_id: "--STAFF_ID--", start_date: "2015-02-06", end_date: "2015-11-06", img: "images//cloud-checkmark-128.png", deleted_at: nil, spent: 0.0, status: 0, approval: 1},
