@@ -47,7 +47,8 @@ gem 'custom_configuration'
 
 gem 'bootstrap-sass'
 gem 'sass-rails'
-gem 'jellyfish_fog_aws'
+gem 'jellyfish_fog_aws', github: 'projectjellyfish/jellyfish_fog_aws', :branch => 'demo/sample-branch'
+# gem 'jellyfish_fog_aws', path: '../jellyfish_fog_aws'
 
 # Autoprefixer for CSS classes using Can I Use values.
 gem 'autoprefixer-rails'
