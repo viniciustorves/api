@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: git://github.com/projectjellyfish/jellyfish_fog_aws.git
-  revision: 8725cce7208cc468724241b2d8506c50cc986226
-  ref: 8725cce7208cc468724241b2d8506c50cc986226
+  revision: 041509fe4a59d1b9be091c61784b6694a7ad4fb1
+  ref: 041509fe4a59d1b9be091c61784b6694a7ad4fb1
   specs:
     jellyfish_fog_aws (0.2.1)
       bcrypt
