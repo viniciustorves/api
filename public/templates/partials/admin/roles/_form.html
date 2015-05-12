@@ -2,11 +2,11 @@
   <label class="col-sm-2 control-label" for="name">Role Name:</label>
 
   <div class="col-sm-6 controls">
-    <input id="name" name="name" type="text" ng-model="adminGroupFormCtrl.role.name" ng-change="adminGroupFormCtrl.clearSubmitError('name')" class="form-control" required/>
+    <input id="name" name="name" type="text" ng-model="adminRoleFormCtrl.role.name" ng-change="adminRoleFormCtrl.clearSubmitError('name')" class="form-control" required/>
 
     <div class="help-block">
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('name', 'required')">Role Name is Required.</div>
-      <div class="help-text" ng-show="adminGroupFormCtrl.hasError('name', 'submitError')">{{adminRoleFormCtrl.getSubmitErrorValue('name')}}</div>
+      <div class="help-text" ng-show="adminRoleFormCtrl.hasError('name', 'required')">Role Name is Required.</div>
+      <div class="help-text" ng-show="adminRoleFormCtrl.hasError('name', 'submitError')">{{adminRoleFormCtrl.getSubmitErrorValue('name')}}</div>
     </div>
   </div>
   <div class="col-sm-4"></div>
@@ -28,20 +28,20 @@
 
 <div class="form-group">
    <label class="col-sm-2 controls control-label" for="projects">Projects:</label>
-   <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-   <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
+   <input class="checkbox-margin" type="checkbox" name="projects-read"> Read
+   <input class="checkbox-margin" type="checkbox" name="projects-write"> Write
 </div>
 
 <div class="form-group">
     <label class="col-sm-2 control-label" for="approval">Approve:</label>
-    <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-    <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
+    <input class="checkbox-margin" type="checkbox" name="approval-read"> Read
+    <input class="checkbox-margin" type="checkbox" name="approval-read"> Write
 </div>
 
 <div class="form-group">
      <div class="bottom-input">
         <label class="col-sm-2 control-label" for="membership">Membership:</label>
-        <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-        <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
+        <input class="checkbox-margin" type="checkbox" name="membership-read"> Read
+        <input class="checkbox-margin" type="checkbox" name="membership-vehicle"> Write
     </div>
 </div>
