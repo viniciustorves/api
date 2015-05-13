@@ -6,6 +6,17 @@ GIT
       nokogiri (>= 1.5.10)
       uuid (~> 2.3)
 
+GIT
+  remote: git://github.com/projectjellyfish/jellyfish_fog_aws.git
+  revision: 041509fe4a59d1b9be091c61784b6694a7ad4fb1
+  ref: 041509fe4a59d1b9be091c61784b6694a7ad4fb1
+  specs:
+    jellyfish_fog_aws (0.2.1)
+      bcrypt
+      fog
+      jellyfish-provisioner
+      rails
+
 GEM
   remote: https://rubygems.org/
   remote: http://rails-assets.org/
@@ -132,7 +143,7 @@ GEM
       dotenv (= 2.0.1)
     equalizer (0.0.11)
     erubis (2.7.0)
-    excon (0.45.1)
+    excon (0.45.3)
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -143,12 +154,13 @@ GEM
     ffi (1.9.8)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.29.0)
+    fog (1.30.0)
       fog-atmos
       fog-aws (~> 0.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.27, >= 1.27.4)
       fog-ecloud
+      fog-google (>= 0.0.2)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -187,6 +199,10 @@ GEM
     fog-ecloud (0.1.1)
       fog-core
       fog-xml
+    fog-google (0.0.5)
+      fog-core
+      fog-json
+      fog-xml
     fog-json (1.0.1)
       fog-core (~> 1.0)
       multi_json (~> 1.0)
@@ -214,7 +230,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (0.4.3)
+    fog-softlayer (0.4.6)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -255,11 +271,6 @@ GEM
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jellyfish-provisioner (0.1.0)
-    jellyfish_fog_aws (0.2.1)
-      bcrypt
-      fog
-      jellyfish-provisioner
-      rails
     json (1.8.2)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -564,7 +575,7 @@ DEPENDENCIES
   friendly_id
   highline
   jbuilder (~> 2.0)
-  jellyfish_fog_aws
+  jellyfish_fog_aws!
   launchy
   license_finder
   omniauth
