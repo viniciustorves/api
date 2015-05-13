@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
 
   api :PUT, '/groups/:id', 'Updates group with :id'
   param :id, :number, required: true
-  param :name, String, desc: 'Group Name', required: true
+  param :name, String, desc: 'Group Name'
   param :description, String, desc: 'Group Description'
   param :staff_ids, Array
   error code: 404, desc: MissingRecordDetection::Messages.not_found
