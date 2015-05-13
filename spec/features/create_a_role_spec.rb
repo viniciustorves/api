@@ -10,7 +10,7 @@ feature 'Role creation' do
     fill_in 'Name', with: 'Jellyfish Role #1'
     fill_in 'Description', with: 'This is a project manager role'
     within('#projects_permissions') { choose['read'] }
-    within('#approval_permissions') { choose['read'] }
+    within('#approval_permissions') { choose['write'] }
     within('#membership_permissions') { choose['read'] }
 
     click_on 'CREATE NEW ROLE'
