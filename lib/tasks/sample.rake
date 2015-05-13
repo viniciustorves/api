@@ -137,5 +137,17 @@ namespace :sample do
       { id: 1, project_id: 3, staff_id: 0, order_item_id: 6, status: "CRITICAL", message: "Blog has 1 month of funding, please increase budget.", start_date: nil, end_date: nil}
     ])
     Alert.connection.execute("ALTER SEQUENCE alerts_id_seq RESTART #{Alert.all.order('id DESC').first.id + 1}")
+
+    ProjectAnswer.create!([
+      { id: 1, project_id: 6, project_question_id: 8, answer: "5" },
+      { id: 2, project_id: 6, project_question_id: 7, answer: "High" },
+      { id: 3, project_id: 6, project_question_id: 6, answer: "No" },
+      { id: 4, project_id: 6, project_question_id: 5, answer: "East Coast Data Center" },
+      { id: 5, project_id: 6, project_question_id: 4, answer: "true" },
+      { id: 6, project_id: 6, project_question_id: 3, answer: "2015-05-20T05:00:00.000Z" },
+      { id: 7, project_id: 6, project_question_id: 2, answer: "4873849128497761" },
+      { id: 8, project_id: 6, project_question_id: 1, answer: "A project to demo Jellyfish." }
+    ])
+    ProjectAnswer.connection.execute("ALTER SEQUENCE project_answers_id_seq RESTART #{ProjectAnswer.all.order('id DESC').first.id + 1}")
   end
 end
