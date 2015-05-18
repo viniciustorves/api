@@ -52,7 +52,7 @@ function ProductFormController($scope, $state,
     return false;
   };
 
-  this.priceRlmegex = '\\d{1,6}(\\.\\d{1,4})?';
+  this.priceRegex  = '\\d{1,6}(\\.\\d{1,4})?';
 
   this.initForm = function (parent) {
     angular.extend(this, parent);

@@ -67,7 +67,8 @@
   <section-header name="Service">
     <div class="table-box">
       <div class="data-box">
-
+        {{serviceCtrl.service}}
+        {{serviceCtrl.OrderItemsResource}}
         <table st-table="rowCollection" class="table table-responsive table-striped">
           <tbody>
           <tr>
@@ -80,7 +81,7 @@
           </tr>
           <tr>
             <td class="blue-texts font15">IP Address</td>
-            <td class="item-texts">{{serviceCtrl.service.ip_address}}</td>
+            <td class="item-texts">{{serviceCtrl.service.ipaddress}}</td>
           </tr>
           </tbody>
         </table>

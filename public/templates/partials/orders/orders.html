@@ -59,7 +59,7 @@
             <tbody>
             <tr ng-repeat="item in ordersCtrl.order.order_items">
                 <td class="blue-texts font15"><a class="blue-link"
-                                                 ui-sref="base.authed.marketplace.show({id: item.product_id})">{{item.id}}</a>
+                                                 ui-sref="base.authed.service({order_id: ordersCtrl.order.id, id: item.id})">{{item.id}}</a>
                 </td>
                 <td class="item-texts"><a class="blue-link"
                                           ui-sref="base.authed.marketplace.show({id: item.product_id})">{{item.product.name}}</a>
@@ -68,7 +68,6 @@
                                           ui-sref="base.authed.project.view({projectId: item.project_id})">{{item.project.name}}</a>
                 </td>
                 <td class="item-texts">{{item.provision_status | uppercase}}</td>
-                <!--<td class="item-texts" ui-sref="base.authed.service({order_id: ordersCtrl.order.id, id: item.id})">-->
                 <!--Service-->
                 <!--</td>-->
             </tr>
