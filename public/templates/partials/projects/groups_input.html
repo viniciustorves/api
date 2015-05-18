@@ -1,20 +1,25 @@
-<section-header name="Groups">
-  <div angucomplete-alt
-    id="group_search"
-    placeholder="Search groups"
-    selected-object="addGroupToProject"
-    local-data="unaddedGroups"
-    search-fields="name"
-    title-field="name"
-    clear-selected="true"
-    minlength="0"
-  />
+<div class="form-group">
+    <label for="groups-input" class="col-sm-3 control-label required">Add Group(s)</label>
+    <div class="col-sm-3">
+        <div angucomplete-alt
+             id="group_search"
+             placeholder="Search groups"
+             selected-object="addGroupToProject"
+             local-data="unaddedGroups"
+             search-fields="name"
+             title-field="name"
+             clear-selected="true"
+             minlength="0"
+             input-class="control-input"
+        />
+    </div>
 
-  <ul id="groups-list">
+
+    <ul id="groups-list">
     <li ng-attr-id="{{'group-' + group.id}}" class="group" ng-repeat="group in project.groups">
       {{group.name}}
       <select ng-model="role"></select>
       <a href="#" ng-click="removeGroupFromProject(group)">x</a>
     </li>
-  </ul>
-</section-header>
+    </ul>
+</div>
