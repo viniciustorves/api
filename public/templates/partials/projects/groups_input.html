@@ -15,10 +15,12 @@
     </div>
 
 
-    <ul id="groups-list">
+    <ul id="groups-list" class="col-sm-8">
     <li ng-attr-id="{{'group-' + group.id}}" class="group" ng-repeat="group in project.groups">
       {{group.name}}
-      <select ng-model="role"></select>
+      <select ng-model="role">
+          <option value="" disabled selected> Select role </option>
+      </select>
       <a href="#" ng-click="removeGroupFromProject(group)">x</a>
     </li>
     </ul>
