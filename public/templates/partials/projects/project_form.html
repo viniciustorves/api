@@ -51,62 +51,64 @@
 
   <groups-input project="project"></groups-input>
 
-  <nf-form name="projectQuestionForm">
-    <div ng-repeat="answer in project.project_answers">
-      <span ng-switch on="answer.project_question.field_type">
-        <span ng-switch-when="check_box">
-          <div class="form-group">
-            <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
+  <section-header name="Project Questions">
+      <nf-form name="projectQuestionForm">
+        <div ng-repeat="answer in project.project_answers">
+          <span ng-switch on="answer.project_question.field_type">
+            <span ng-switch-when="check_box">
+              <div class="form-group">
+                <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
 
-            <div class="col-sm-8 control-input">
-              <input type="checkbox" name="{{answer.project_question_name}}" ng-model='answer.answer'
-                     id="{{answer.project_question.id}}" ng-true-value="'true'" ng-false-value="'false'">
-            </div>
-          </div>
-        </span>
-        <span ng-switch-when="date">
-          <div class="form-group">
-            <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
-
-            <div class="col-sm-8 control-input">
-              <div class="input-group">
-                <span class="input-group-addon" ng-click="openAnswerDate($event, $index)"><i class="fa fa-calendar"></i></span>
-                <input name="{{answer.project_question_name}}" ng-click="openAnswerDate($event, $index)"
-                       ng-model='answer.answer' class="form-control" id="{{answer.project_question.id}}"
-                       placeholder="{{answer.project_question.help_text}}"
-                       ng-required="{{answer.project_question.required}}" datepicker-popup="{{format}}"
-                       is-open="answerDateOpened[$index]" datepicker-options="dateOptions" close-text="Close">
+                <div class="col-sm-8 control-input">
+                  <input type="checkbox" name="{{answer.project_question_name}}" ng-model='answer.answer'
+                         id="{{answer.project_question.id}}" ng-true-value="'true'" ng-false-value="'false'">
+                </div>
               </div>
-            </div>
-          </div>
-        </span>
-        <span ng-switch-when="text">
-          <div class="form-group">
-            <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
+            </span>
+            <span ng-switch-when="date">
+              <div class="form-group">
+                <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
 
-            <div class="col-sm-8 control-input">
-              <input name="{{answer.project_question_name}}" ng-model='answer.answer' class="form-control"
-                     id="{{answer.project_question.id}}" placeholder="{{answer.project_question.help_text}}"
-                     ng-required="{{answer.project_question.required}}">
-            </div>
-          </div>
-        </span>
-        <span ng-switch-when="select_option">
-          <div class="form-group">
-            <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
+                <div class="col-sm-8 control-input">
+                  <div class="input-group">
+                    <span class="input-group-addon" ng-click="openAnswerDate($event, $index)"><i class="fa fa-calendar"></i></span>
+                    <input name="{{answer.project_question_name}}" ng-click="openAnswerDate($event, $index)"
+                           ng-model='answer.answer' class="form-control" id="{{answer.project_question.id}}"
+                           placeholder="{{answer.project_question.help_text}}"
+                           ng-required="{{answer.project_question.required}}" datepicker-popup="{{format}}"
+                           is-open="answerDateOpened[$index]" datepicker-options="dateOptions" close-text="Close">
+                  </div>
+                </div>
+              </div>
+            </span>
+            <span ng-switch-when="text">
+              <div class="form-group">
+                <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
 
-            <div class="col-sm-8 control-input">
-              <select name="{{answer.project_question_name}}" class="form-control" ng-model="answer.answer"
-                      ng-options="option for option in answer.project_question.options"
-                      ng-required="{{answer.project_question.required}}">
-                <option value="">Please select an option.</option>
-              </select>
-            </div>
-          </div>
-        </span>
-      </span>
-    </div>
-  </nf-form>
+                <div class="col-sm-8 control-input">
+                  <input name="{{answer.project_question_name}}" ng-model='answer.answer' class="form-control"
+                         id="{{answer.project_question.id}}" placeholder="{{answer.project_question.help_text}}"
+                         ng-required="{{answer.project_question.required}}">
+                </div>
+              </div>
+            </span>
+            <span ng-switch-when="select_option">
+              <div class="form-group">
+                <label for="{{answer.project_question.id}}" class="col-sm-3 control-label" ng-class="{'required': answer.project_question.required}">{{answer.project_question.question}}</label>
+
+                <div class="col-sm-8 control-input">
+                  <select name="{{answer.project_question_name}}" class="form-control" ng-model="answer.answer"
+                          ng-options="option for option in answer.project_question.options"
+                          ng-required="{{answer.project_question.required}}">
+                    <option value="">Please select an option.</option>
+                  </select>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </nf-form>
+  </section-header>
 
   <div class="form-group">
     <div class="col-sm-11 control-submit">
