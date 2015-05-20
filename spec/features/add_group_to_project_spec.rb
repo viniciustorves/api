@@ -13,9 +13,10 @@ feature 'Add group to project', js: true do
       first('div', text: group.name).click
     end
 
-    within('#groups-list') do
+    visit "/project/#{project.id}"
+    find('#group_search input').click
+    within('#group_search_dropdown') do
       expect(page).to have_content(group.name)
-      expect(page).to have_selector("#group-#{group.id}")
     end
   end
 end
