@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512194822) do
+ActiveRecord::Schema.define(version: 20150513222056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,54 @@ ActiveRecord::Schema.define(version: 20150512194822) do
 
   add_index "groups_staff", ["group_id"], name: "index_groups_staff_on_group_id", using: :btree
   add_index "groups_staff", ["staff_id"], name: "index_groups_staff_on_staff_id", using: :btree
+
+  create_table "jellyfish_manageiq_big_data_products", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cloud_provider"
+    t.string   "chef_role"
+    t.integer  "service_catalog_id"
+    t.integer  "service_template_id"
+    t.integer  "cpu_count"
+    t.float    "disk_size"
+    t.float    "ram_size"
+  end
+
+  create_table "jellyfish_manageiq_database_products", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cloud_provider"
+    t.string   "chef_role"
+    t.integer  "service_catalog_id"
+    t.integer  "service_template_id"
+    t.string   "db_instance_class"
+    t.string   "engine"
+    t.float    "allocated_storage"
+    t.string   "storage_type"
+    t.string   "availability"
+  end
+
+  create_table "jellyfish_manageiq_infrastructure_products", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cloud_provider"
+    t.string   "chef_role"
+    t.integer  "service_catalog_id"
+    t.integer  "service_template_id"
+    t.string   "instance_size"
+    t.float    "disk_size"
+  end
+
+  create_table "jellyfish_manageiq_storage_products", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cloud_provider"
+    t.string   "chef_role"
+    t.integer  "service_catalog_id"
+    t.integer  "service_template_id"
+    t.string   "availability"
+    t.string   "region"
+  end
 
   create_table "logs", force: :cascade do |t|
     t.integer  "staff_id",   null: false
