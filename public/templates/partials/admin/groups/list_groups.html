@@ -1,20 +1,21 @@
-<div class="groups-list-page">
-
-  <section-header name="Groups">
-    <groups-box class="product-box" ng-repeat="group in listGroupsCtrl.groups" group="group">
-      <a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})">Edit</a>
-    </groups-box>
-
-    <div class="add-box">
-      <div class="product-box-shadow">
-        <a ui-sref="base.authed.admin.groups.add">
-          <div class="fa-stack">
-            <i class="fa fa-fw fa-stack-2x fa-circle-thin"></i>
-            <i class="fa fa-fw fa-stack-1x fa-plus"></i>
-          </div>
-          <div class="title">Add New Group</div>
-        </a>
-      </div>
+<section-header name="Groups">
+    <div class="fr">
+        <a class="btn btn-primary group-list-margin" ui-sref="base.authed.admin.groups.add">ADD GROUP</a>
     </div>
-  </section-header>
+</section-header>
+
+<div class="list-group list-group-block">
+    <div href="#" class="list-group-item" group="group" ng-repeat="group in listGroupsCtrl.groups">
+        <span class="col-sm-3 list-group-item-heading">{{group.name}}</span>
+        <span class="col-sm-5 list-group-item-text">{{group.description}}</span>
+        <span class="col-sm-2 list-group-item-select">
+            <select class="form-control" ng-model="role">
+                <option value="role" selected>Select role</option>
+            </select>
+        </span>
+        <a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})">Edit</a>
+        <a type="button" class="btn btn-danger" ui-sref="">Delete</a>
+    </div>
 </div>
+
+

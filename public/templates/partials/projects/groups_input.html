@@ -21,19 +21,11 @@
     <div href="#" class="list-group-item" ng-attr-id="{{'group-' + group.id}}" group="group" ng-repeat="group in project.groups">
         <span class="col-sm-3 list-group-item-heading">{{group.name}}</span>
         <span class="col-sm-5 list-group-item-text">{{group.description}}</span>
-        <span class="col-sm-2 list-group-item-select"><select class="form-control" ng-model="role"><option value="role" disabled>Select role</option></select></span>
+        <span class="col-sm-2 list-group-item-select">
+            <select class="form-control" ng-model="role">
+                <option value="role" selected>Select role</option>
+            </select>
+        </span>
         <span class="col-sm-1 fr"><a href="#" ng-click="removeGroupFromProject(group)"><i class="fa fa-times fa-lg"></i></a></span>
     </div>
 </div>
-
-
-<!--<div class="list-group group-added">-->
-    <!--<a href="#" class="list-group-item" ng-attr-id="{{'group-' + group.id}}" group="group" ng-repeat="group in project.groups">-->
-        <!--<div class="list-group-item-heading">-->
-            <!--{{group.name}}-->
-            <!--<a href="#" class="fr" ng-click="removeGroupFromProject(group)"><i class="fa fa-times fa-lg"></i></a>-->
-            <!--{{group.description}}-->
-            <!--<select ng-model="role"><option value="role" disabled> Select role </option></select>-->
-        <!--</div>-->
-    <!--</a>-->
-<!--</div>-->
