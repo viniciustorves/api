@@ -52,7 +52,8 @@ class WizardQuestionsController < ApplicationController
 
     wizard_question.destroy
 
-    head :ok
+     render json: {}
+    # head :ok
   end
 
   private
@@ -62,6 +63,6 @@ class WizardQuestionsController < ApplicationController
       params[:wizard_answers_attributes] = params.delete(:wizard_answers)
     end
 
-    params.permit(:id, :text, wizard_answers_attributes: [:id, :text, tags_to_add: [], tags_to_remove: []])
+    params.permit(:id, :text, wizard_answers_attributes: [:id, :_destroy, :text, tags_to_add: [], tags_to_remove: []])
   end
 end

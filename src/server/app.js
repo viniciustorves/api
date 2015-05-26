@@ -14,7 +14,7 @@ var environment = process.env.NODE_ENV;
 
 app.use('/api/v1', function(req, res) {
   var url = 'http://localhost:3000/api/v1' + req.url;
-  req.pipe(request(url)).pipe(res);
+  req.pipe(request(url).on("error", function (){})).pipe(res);
 });
 
 app.use(favicon(__dirname + '/favicon.ico'));
