@@ -2,20 +2,59 @@
     <div class="fr">
         <a class="btn btn-primary group-list-margin" ui-sref="base.authed.admin.groups.add">ADD GROUP</a>
     </div>
+
+    <div class="table-container table-box">
+        <table st-table="rowCollection" class="table table-responsive table-striped">
+            <colgroup>
+                <col class="col30">
+                <col class="col05">
+                <col class="col05">
+                <col class="col05">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>Group Name</th>
+                <th>Description</th>
+                <th>Role</th>
+                <th><span class="pull-right">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="group in listGroupsCtrl.groups">
+                    <td>{{group.name}}</td>
+                    <td>{{group.description}}</td>
+                    <td>{{group.role}}</td>
+                    <td>
+                      <span class="pull-right">
+                          <a class="fa fa-edit fa-lg" ui-sref="base.authed.admin.groups.edit({id: group.id})"></a>
+                          <a class="fa fa-lg"></a><!--spacer-->
+                          <a class="fa fa-lg"></a><!--spacer -->
+                          <a class="fa fa-trash-o fa-lg error-icon" ng-click="adminGroupFormCtrl.destroy()"></a>
+                          <!--<a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})"><i class="fa fa-edit fa-lg"></i></a>-->
+                          <!--<a type="button" class="btn btn-danger" ng-click="adminGroupFormCtrl.destroy()"><i class="fa fa-trash-o fa-lg"></i></a>-->
+
+                      </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- end .table-box -->
+
 </section-header>
 
-<div class="list-group list-group-block">
-    <div href="#" class="list-group-item" group="group" ng-repeat="group in listGroupsCtrl.groups">
-        <span class="col-sm-3 list-group-item-heading">{{group.name}}</span>
-        <span class="col-sm-5 list-group-item-text">{{group.description}}</span>
-        <span class="col-sm-2 list-group-item-select">
-            <select class="form-control" ng-model="role">
-                <option value="role" selected>Select role</option>
-            </select>
-        </span>
-        <a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})">Edit</a>
-        <a type="button" class="btn btn-danger" ui-sref="">Delete</a>
-    </div>
-</div>
+<!--<div class="list-group list-group-block">-->
+    <!--<div href="#" class="list-group-item" group="group" ng-repeat="group in listGroupsCtrl.groups">-->
+        <!--<span class="col-sm-3 list-group-item-heading">{{group.name}}</span>-->
+        <!--<span class="col-sm-5 list-group-item-text">{{group.description}}</span>-->
+        <!--<span class="col-sm-2 list-group-item-select">-->
+            <!--<select class="form-control" ng-model="role">-->
+                <!--<option value="role" selected>Select role</option>-->
+            <!--</select>-->
+        <!--</span>-->
+        <!--<a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})">Edit</a>-->
+        <!--<a type="button" class="btn btn-danger" ng-click="adminGroupFormCtrl.destroy()">Delete</a>-->
+    <!--</div>-->
+<!--</div>-->
 
 
