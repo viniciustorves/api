@@ -17,7 +17,7 @@
             <th>Question Title</th>
             <th>Field Type</th>
             <th>Question Order</th>
-            <th></th>
+            <th><span class="pull-right">Actions</span></th>
           </tr>
           </thead>
           <tbody>
@@ -34,8 +34,10 @@
             <td>{{projectQuestion.load_order}}</td>
             <td>
               <span class="pull-right">
-                <a class="fa fa-edit" ng-click="editProjectQuestion(projectQuestion)"></a>
-                <a class="fa fa-trash-o" ng-click="deleteProjectQuestion(projectQuestion)"></a>
+                <a class="fa fa-edit fa-lg" ng-click="editProjectQuestion(projectQuestion)"></a>
+                <a class="fa fa-lg"></a><!--spacer-->
+                <a class="fa fa-lg"></a><!--spacer -->
+                <a class="fa fa-trash-o fa-lg error-icon" ng-click="deleteProjectQuestion(projectQuestion)"></a>
               </span>
             </td>
           </tr>

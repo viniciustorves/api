@@ -1,6 +1,6 @@
 <section-header name="Groups">
     <div class="fr">
-        <a class="btn btn-primary group-list-margin" ui-sref="base.authed.admin.groups.add">ADD GROUP</a>
+        <a class="btn btn-primary" ui-sref="base.authed.admin.groups.add">ADD GROUP</a>
     </div>
 
     <div class="table-container table-box">
@@ -16,7 +16,7 @@
                 <th>Group Name</th>
                 <th>Description</th>
                 <th>Role</th>
-                <th><span class="pull-right">Actions</th>
+                <th><span class="pull-right">Actions</span></th>
             </tr>
             </thead>
             <tbody>
@@ -30,9 +30,6 @@
                           <a class="fa fa-lg"></a><!--spacer-->
                           <a class="fa fa-lg"></a><!--spacer -->
                           <a class="fa fa-trash-o fa-lg error-icon" ng-click="adminGroupFormCtrl.destroy()"></a>
-                          <!--<a type="button" class="btn btn-primary" ui-sref="base.authed.admin.groups.edit({id: group.id})"><i class="fa fa-edit fa-lg"></i></a>-->
-                          <!--<a type="button" class="btn btn-danger" ng-click="adminGroupFormCtrl.destroy()"><i class="fa fa-trash-o fa-lg"></i></a>-->
-
                       </span>
                     </td>
                 </tr>
