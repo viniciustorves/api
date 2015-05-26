@@ -21,7 +21,6 @@ var AuthService = function($http, $q, $state, Session, apiResource, USER_ROLES) 
     return $http
       .post(apiResource('signIn'), credentials)
       .success(function(data, statusCode) {
-        console.log(data);
         Session.create(data.email, data.role);
       });
   };
