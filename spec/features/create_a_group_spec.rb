@@ -6,7 +6,7 @@ feature 'Group creation' do
     member_staff = create(:staff)
     group = build(:group)
     visit '/admin/groups/list'
-    click_on('Add New Group')
+    click_on('ADD GROUP')
 
     fill_in('Group Name', with: group.name)
     fill_in('Group Description', with: group.description)
