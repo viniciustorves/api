@@ -1,14 +1,15 @@
-<h1>{{vm.question.text}}</h1>
+<h1 class="text-center">{{vm.question.text}}</h1>
 <multiple-choice
   action="vm.nextQuestion"
   model="vm.answer"
   options="vm.question.wizard_answers"
 ></multiple-choice>
 <a
+  class="btn btn-primary"
   ng-if="vm.noMoreQuestions"
   ui-sref="marketplace({projectId: vm.projectId, tags: vm.tags})"
 >
   View filtered products
 </a>
 
-<button ng-click="vm.resetWizard()">Reset Wizard</button>
+<button ng-click="vm.resetWizard()" class="btn btn-danger pull-right">Reset Wizard</button>
