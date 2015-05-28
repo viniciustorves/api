@@ -259,7 +259,7 @@
 
       vm.newTag = '';
       vm.placeholder = '';
-      vm.tags = [];
+      vm.tags = vm.tags || [];
       vm.events = PubSub.events();
       vm.tagList = null;
       vm.hasFocus = false;

@@ -52,8 +52,7 @@ class WizardQuestionsController < ApplicationController
 
     wizard_question.destroy
 
-     render json: {}
-    # head :ok
+    head :ok
   end
 
   private

@@ -72,7 +72,6 @@
 
     vm.saveQuestion = function(question) {
       question.wizard_answers = formatAnswers(question.wizard_answers);
-      console.log(question.$save)
       question.$update();
     }
 

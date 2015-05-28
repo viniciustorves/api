@@ -5,9 +5,9 @@
     .factory('ProductCategory', ProductCategoryFactory);
 
   /** @ngInject */
-  function ProductCategoryFactory($resource, ApiService) {
-    // var ProductCategory = $resource('productTypesById');
+  function ProductCategoryFactory($resource) {
+    var ProductCategory = $resource('/api/mock/product_categories/:id');
 
-    return {};// ProductCategory;
+    return ProductCategory;
   }
 })();

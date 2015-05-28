@@ -18,9 +18,9 @@
     }
   };
 
-  function MultipleChoiceDirectiveController($scope) {
-    $scope.WIZARD_AUTOSUBMIT = false;
-    $scope.WIZARD_MULTIPAGE = false;
+  function MultipleChoiceDirectiveController($scope, WIZARD_AUTOSUBMIT, WIZARD_MULTIPAGE) {
+    $scope.WIZARD_AUTOSUBMIT = WIZARD_AUTOSUBMIT;
+    $scope.WIZARD_MULTIPAGE = WIZARD_MULTIPAGE;
   }
 
   function handleModelUpdate(scope) {

@@ -5,12 +5,12 @@
     .run(appRun);
 
   /** @ngInject */
-  function appRun(routerHelper, navigationHelper) {
-    routerHelper.configureStates(getStates());
+  function appRun(routerHelper, navigationHelper, WIZARD_AUTOSUBMIT, WIZARD_MULTIPAGE) {
+    routerHelper.configureStates(getStates(WIZARD_AUTOSUBMIT, WIZARD_MULTIPAGE));
   }
 
-  function getStates() {
-    if (false) {
+  function getStates(WIZARD_AUTOSUBMIT, WIZARD_MULTIPAGE) {
+    if (WIZARD_MULTIPAGE) {
       return multiPageWizard;
     } else {
       return singlePageWizard;
@@ -98,8 +98,8 @@
       });
 
       $state.go(
-        "base.authed.project.addService",
-        { projectId: $stateParams.projectId, tags: vm.tags }
+        "marketplace",
+        { projectId: $stateParams.projectId, tags: vm.tags.join(',') }
       );
     }
   }

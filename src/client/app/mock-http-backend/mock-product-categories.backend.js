@@ -7,8 +7,8 @@
 
   /** @ngInject */
   function mock($httpBackend, MockHelper, MockProductCategory) {
-    $httpBackend.whenGET(/\/api\/product_categories\/\d+/).respond(getProductCategory);
-    $httpBackend.whenGET(/\/api\/product_categories(?:\?.+)?/).respond(getProductCategories);
+    $httpBackend.whenGET(/\/api\/mock\/product_categories\/\d+/).respond(getProductCategory);
+    $httpBackend.whenGET(/\/api\/mock\/product_categories(?:\?.+)?/).respond(getProductCategories);
 
     function getProductCategory(method, url, data) {
       var id = url.match(/\/product_categories\/(\d+)/)[1];
