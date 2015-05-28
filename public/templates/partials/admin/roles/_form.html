@@ -2,7 +2,7 @@
   <label class="col-sm-2 control-label" for="name">Role Name:</label>
 
   <div class="col-sm-6 controls">
-    <input id="name" name="name" type="text" ng-model="adminGroupFormCtrl.role.name" ng-change="adminGroupFormCtrl.clearSubmitError('name')" class="form-control" required/>
+    <input id="name" name="name" type="text" ng-model="adminRoleFormCtrl.role.name" ng-change="adminGroupFormCtrl.clearSubmitError('name')" class="form-control" required/>
 
     <div class="help-block">
       <div class="help-text" ng-show="adminGroupFormCtrl.hasError('name', 'required')">Role Name is Required.</div>
@@ -25,7 +25,8 @@
     </div>
     <div class="col-sm-4"></div>
 </div>
-
+hello
+{{adminGroupFormCtrl.role}}
 <fieldset ng-repeat="permission in adminRoleFormCtrl.roles">
   <div class="form-group permissions" ng-class="{{permisson}}">
     <label class="col-sm-2 control-label" for="{{permission}}">{{permission}}:</label>

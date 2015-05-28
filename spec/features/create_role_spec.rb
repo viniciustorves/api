@@ -10,12 +10,16 @@ feature 'Admin creates a role', :js do
     fill_in('Role Name', with: role.name)
     fill_in('Role Description', with: role.description)
     # set correct permissions
-    %w(.permissions-projects .permissions-approvals .permissions-memberships).each do |container|
-      within(container) do
-        check 'Read'
-        check 'Write'
-      end
-    end
+    # %w(.permissions-projects .permissions-approvals .permissions-memberships).each do |container|
+    #   within(container) do
+    #     check 'Read'
+    #     check 'Write'
+    #   end
+    # end
+    # binding.pry
+    click_on 'CREATE NEW ROLE'
+
+    expect(page).to have_content('Role successfully created.')
     # submit
     # make sure role was created
   end
