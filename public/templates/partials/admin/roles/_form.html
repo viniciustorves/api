@@ -26,22 +26,26 @@
     <div class="col-sm-4"></div>
 </div>
 
-<div class="form-group">
-   <label class="col-sm-2 controls control-label" for="projects">Projects:</label>
-   <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-   <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
-</div>
-
-<div class="form-group">
-    <label class="col-sm-2 control-label" for="approval">Approve:</label>
-    <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-    <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
-</div>
-
-<div class="form-group">
-     <div class="bottom-input">
-        <label class="col-sm-2 control-label" for="membership">Membership:</label>
-        <input class="checkbox-margin" type="checkbox" name="vehicle" value="read"> Read
-        <input class="checkbox-margin" type="checkbox" name="vehicle" value="write"> Write
-    </div>
-</div>
+<fieldset ng-repeat="permission in adminRoleFormCtrl.roles">
+  <div class="form-group permissions" ng-class="{{permisson}}">
+    <label class="col-sm-2 control-label" for="{{permission}}">{{permission}}:</label>
+    <label>
+      <input
+        class="checkbox-margin"
+        type="checkbox"
+        ng-model="adminGroupFormCtrl.role.permissions[permission]"
+        value="read"
+      />
+      Read
+    </label>
+     <label>
+       <input
+         class="checkbox-margin"
+         type="checkbox"
+         ng-model="adminGroupFormCtrl.role.permissions[permission]"
+         value="write"
+       />
+       Write
+     </label>
+  </div>
+</fieldset>

@@ -13,20 +13,7 @@ var AdminRoleFormController = function($state, UsersResource) {
   this.formSubmitted = false;
   this.users = UsersResource.query();
 
-  // Set the available roles.
-  // @todo Should probably be pulled form the backend
-  // @todo For some reason ui-select goes nuts if this is returned from a
-  //       method.
-  this.roles = [
-    {
-      value: 'role',
-      name: 'Role'
-    },
-    {
-      value: 'admin',
-      name: 'Admin'
-    }
-  ];
+  this.roles = ['projects', 'approvals', 'memberships'];
 
 };
 
