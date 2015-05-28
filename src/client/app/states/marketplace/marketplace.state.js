@@ -53,7 +53,7 @@
     vm.title = 'Marketplace';
 
     if($stateParams.tags) {
-      vm.tags =  $stateParams.tags.split(",");
+      vm.tags =  $stateParams.tags;
     } else {
       vm.tags = [];
     };
