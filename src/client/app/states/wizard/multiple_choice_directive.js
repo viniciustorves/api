@@ -7,7 +7,7 @@
   function MultipleChoiceDirective() {
     return {
       controller: MultipleChoiceDirectiveController,
-      link: handleModelUpdate,
+      link: link,
       restrict: 'E',
       scope: {
         action: "=",
@@ -23,7 +23,7 @@
     $scope.WIZARD_MULTIPAGE = WIZARD_MULTIPAGE;
   }
 
-  function handleModelUpdate(scope) {
+  function link(scope) {
     if(scope.WIZARD_AUTOSUBMIT && scope.WIZARD_MULTIPAGE) {
       scope.$watch('model', function(newValue){
         if(newValue) {
