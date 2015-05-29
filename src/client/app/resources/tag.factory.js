@@ -6,9 +6,9 @@
 
   /** @ngInject */
   function TagFactory($resource) {
-    var Tag = $resource('/api/mock/tags/:id', {}, {
+    var Tag = $resource('/api/tags/:id', {}, {
       grouped: {
-        url: '/api/mock/tags/grouped',
+        url: '/api/tags/grouped',
         method: 'GET',
         isArray: false
       }

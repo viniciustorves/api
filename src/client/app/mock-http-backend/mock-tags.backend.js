@@ -7,9 +7,9 @@
 
   /** @ngInject */
   function mock($httpBackend, MockHelper, MockTag) {
-    $httpBackend.whenGET(/\/api\/mock\/tags\/\d+/).respond(getTag);
-    $httpBackend.whenGET(/\/api\/mock\/tags\/grouped/).respond(getGroupedTags);
-    $httpBackend.whenGET(/\/api\/mock\/tags(\?limit=\w+)?/).respond(getTags);
+    $httpBackend.whenGET(/\/api\/tags\/\d+/).respond(getTag);
+    $httpBackend.whenGET(/\/api\/tags\/grouped/).respond(getGroupedTags);
+    $httpBackend.whenGET(/\/api\/tags(\?limit=\w+)?/).respond(getTags);
 
     function getTag(method, url, data) {
       var id = url.match(/\/tags\/(\d+)/)[1];

@@ -7,11 +7,11 @@
 
   /** @ngInject */
   function mock($httpBackend, MockHelper, MockProduct) {
-    $httpBackend.whenGET(/\/api\/mock\/products\/\d+/).respond(getProduct);
-    $httpBackend.whenGET(/\/api\/mock\/products(?:\?.+)?/).respond(getProducts);
-    $httpBackend.whenPOST(/\/api\/mock\/products/).respond(postProduct);
-    $httpBackend.whenPUT(/\/api\/mock\/products\/\d+/).respond(putProduct);
-    $httpBackend.whenDELETE(/\/api\/mock\/products\/\d+/).respond(deleteProduct);
+    $httpBackend.whenGET(/\/api\/products\/\d+/).respond(getProduct);
+    $httpBackend.whenGET(/\/api\/products(?:\?.+)?/).respond(getProducts);
+    $httpBackend.whenPOST(/\/api\/products/).respond(postProduct);
+    $httpBackend.whenPUT(/\/api\/products\/\d+/).respond(putProduct);
+    $httpBackend.whenDELETE(/\/api\/products\/\d+/).respond(deleteProduct);
 
     function getProduct(method, url, data) {
       var id = url.match(/\/products\/(\d+)/)[1];

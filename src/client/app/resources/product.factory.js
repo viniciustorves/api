@@ -6,7 +6,7 @@
 
   /** @ngInject */
   function ProductFactory($resource, ApiService) {
-    var Product = $resource('/api/mock/products/:id', {id: '@id'}, {
+    var Product = $resource(ApiService.routeResolve('productsById'), {id: '@id'}, {
       update: {method: 'PUT'}
     });
 

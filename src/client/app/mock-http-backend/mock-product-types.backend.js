@@ -7,8 +7,8 @@
 
   /** @ngInject */
   function mock($httpBackend, MockHelper, MockProductType) {
-    $httpBackend.whenGET(/\/api\/mock\/product_types\/\d+/).respond(getProductType);
-    $httpBackend.whenGET(/\/api\/mock\/product_types(?:\?.+)?/).respond(getProductTypes);
+    $httpBackend.whenGET(/\/api\/product_types\/\d+/).respond(getProductType);
+    $httpBackend.whenGET(/\/api\/product_types(?:\?.+)?/).respond(getProductTypes);
 
     function getProductType(method, url, data) {
       var id = url.match(/\/product_types\/(\d+)/)[1];
