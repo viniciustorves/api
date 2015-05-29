@@ -1,40 +1,39 @@
 <div>
-  <select
-    ng-if="options.length > 4"
-    ng-model="$parent.model"
-    ng-options="option.text for option in options"
-  ></select>
-<div class="row">
-  <div class="col-md-4">.col-md-4</div>
-    <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
-    </div>
+  <div
+     style="text-align: center; width: 200px; margin: 0 auto !important"
+     ng-if="options.length > 4"
+  >
+    <select
+      ng-model="$parent.model"
+      ng-options="option.text for option in options"
+    ></select>
   </div>
-</div>
-
 <div class="row">
-  <div class"col-sm-4 col-sm-offset-6">
+  <div class="col-sm-6 col-sm-offset-3">
     <div
+      style="width: 200px; margin: 0 auto"
       ng-if="options.length <= 4"
       ng-repeat="option in options"
       >
-    <label>
+    <label
+      style="font-size: 32px !important; line-height: 20px !important; vertical-align: bottom !important; padding: 10px;"
+    >
         <input
-        class="text-center"
           type="radio"
           ng-model="$parent.$parent.model"
           ng-value="option"
-          style="font-size: 40px !important"
         />
       {{option.text}}
     </label>
-  </div>
+    </div>
   <input
-    class="btn btn-primary"
+    class="btn btn-primary btn-lg pull-right"
     type="submit"
     value="Next"
     ng-click="action()"
     ng-hide="WIZARD_AUTOSUBMIT || !WIZARD_MULTIPAGE"
   />
     </div>
+  </div>
   </div>
 </div>
