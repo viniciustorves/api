@@ -10,7 +10,7 @@
       link: link,
       restrict: 'E',
       scope: {
-        action: "=",
+        action: "&?",
         model: "=",
         options: "=",
       },
