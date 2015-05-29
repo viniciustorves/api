@@ -51,12 +51,7 @@
     var COMPARE_LIMIT = 4;
 
     vm.title = 'Marketplace';
-
-    if($stateParams.tags) {
-      vm.tags =  $stateParams.tags;
-    } else {
-      vm.tags = [];
-    };
+    vm.tags = [];
     vm.viewMode = VIEW_MODES.list;
 
     vm.activate = activate;
@@ -70,6 +65,10 @@
       updateCatalog();
       Compare.clear();
       Compare.limit = COMPARE_LIMIT;
+
+      if($stateParams.tags) {
+        vm.tags =  $stateParams.tags;
+      }
     }
 
     function updateCatalog() {
