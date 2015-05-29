@@ -20,7 +20,7 @@
           .get({ id: this.next_question_id })
           .$promise;
       }
-    }
+    };
 
     return WizardQuestion;
   }

@@ -58,31 +58,31 @@
 
     vm.deleteQuestion = function(question) {
       question.$delete(function(question){
-        vm.questions = lodash.without(vm.questions, question)
+        vm.questions = lodash.without(vm.questions, question);
       });
-    }
+    };
 
     function addAnswer(question) {
       question.wizard_answers.push({});
     }
 
     vm.deleteAnswer = function(question, answer) {
-      answer["_destroy"] = true
-    }
+      answer._destroy = true;
+    };
 
     vm.saveQuestion = function(question) {
       question.wizard_answers = formatAnswers(question.wizard_answers);
       question.$update();
-    }
+    };
 
     function formatAnswers(answers){
       return lodash.map(answers, function(answer) {
-        if(typeof answer.tags_to_add === "string") {
-          answer.tags_to_add = answer.tags_to_add.split(",");
+        if(typeof answer.tags_to_add === 'string') {
+          answer.tags_to_add = answer.tags_to_add.split(',');
         }
 
-        if(typeof answer.tags_to_remove === "string") {
-          answer.tags_to_remove = answer.tags_to_remove.split(",");
+        if(typeof answer.tags_to_remove === 'string') {
+          answer.tags_to_remove = answer.tags_to_remove.split(',');
         }
 
         return answer;

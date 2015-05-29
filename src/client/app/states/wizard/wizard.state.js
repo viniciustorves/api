@@ -12,7 +12,7 @@
   function getStates(WIZARD_MULTIPAGE) {
     return {
       'wizard': {
-        url: "/project/:projectId/wizard",
+        url: '/project/:projectId/wizard',
         redirectTo: WIZARD_MULTIPAGE ? 'wizard.multipage' : 'wizard.singlepage',
         template: '<ui-view></ui-view>'
       }

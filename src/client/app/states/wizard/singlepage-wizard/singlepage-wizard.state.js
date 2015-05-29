@@ -13,21 +13,21 @@
     return {
       'wizard.singlepage': {
         controller: StateController,
-        controllerAs: "vm",
+        controllerAs: 'vm',
         resolve: {
           question: function(WizardQuestion) {
-            return WizardQuestion.get({ id: "first" }).$promise;
+            return WizardQuestion.get({ id: 'first' }).$promise;
           },
           questions: function(WizardQuestion) {
             return WizardQuestion.query().$promise;
           },
         },
-        templateUrl: "app/states/wizard/singlepage-wizard/singlepage-wizard.html",
+        templateUrl: 'app/states/wizard/singlepage-wizard/singlepage-wizard.html',
       }
-    }
-  };
+    };
+  }
 
-  function StateController($stateParams, $state, questions) {
+  function StateController($stateParams, $state, questions, lodash) {
     var vm = this;
 
     vm.answers = {};
@@ -39,13 +39,13 @@
       vm.questions.forEach(function(question) {
         var answer = vm.answers[question.id];
         if(answer) {
-          vm.tags = _.union(vm.tags, answer.tags_to_add);
-          vm.tags = _.difference(vm.tags, answer.tags_to_remove);
-        };
+          vm.tags = lodash.union(vm.tags, answer.tags_to_add);
+          vm.tags = lodash.difference(vm.tags, answer.tags_to_remove);
+        }
       });
 
       $state.go(
-        "marketplace",
+        'marketplace',
         { projectId: $stateParams.projectId, tags: vm.tags }
       );
     }

@@ -13,21 +13,21 @@
     return {
       'wizard.multipage': {
         controller: StateController,
-        controllerAs: "vm",
+        controllerAs: 'vm',
         resolve: {
           question: function(WizardQuestion) {
-            return WizardQuestion.get({ id: "first" }).$promise;
+            return WizardQuestion.get({ id: 'first' }).$promise;
           },
           questions: function(WizardQuestion) {
             return WizardQuestion.query().$promise;
           },
         },
-        templateUrl: "app/states/wizard/multipage-wizard/multipage-wizard.html",
+        templateUrl: 'app/states/wizard/multipage-wizard/multipage-wizard.html',
       }
-    }
-  };
+    };
+  }
 
-  function StateController($stateParams, question, questions, WizardQuestion, Projects) {
+  function StateController($stateParams, question, questions, WizardQuestion, Projects, lodash) {
     var vm = this;
 
     vm.nextQuestion = nextQuestion;
@@ -37,8 +37,8 @@
     vm.tags = [];
 
     function nextQuestion() {
-      vm.tags = _.union(vm.tags, vm.answer.tags_to_add);
-      vm.tags = _.difference(vm.tags, vm.answer.tags_to_remove);
+      vm.tags = lodash.union(vm.tags, vm.answer.tags_to_add);
+      vm.tags = lodash.difference(vm.tags, vm.answer.tags_to_remove);
 
       if(vm.question.next_question_id) {
         vm.question.next().then(function(question) {
@@ -47,13 +47,13 @@
       } else {
         vm.noMoreQuestions = true;
       }
-    };
+    }
 
     function resetWizard() {
       vm.answer = {};
       vm.question = question;
       vm.tags = [];
-    };
+    }
   }
 
 

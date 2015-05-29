@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.components')
-    .directive('multipleChoice', MultipleChoiceDirective)
+    .directive('multipleChoice', MultipleChoiceDirective);
 
   function MultipleChoiceDirective() {
     return {
@@ -10,13 +10,13 @@
       link: link,
       restrict: 'E',
       scope: {
-        action: "&?",
-        model: "=",
-        options: "=",
+        action: '&?',
+        model: '=',
+        options: '=',
       },
       templateUrl: 'app/components/multiple-choice/multiple-choice.html',
-    }
-  };
+    };
+  }
 
   function MultipleChoiceDirectiveController($scope, WIZARD_AUTOSUBMIT, WIZARD_MULTIPAGE) {
     $scope.WIZARD_AUTOSUBMIT = WIZARD_AUTOSUBMIT;
@@ -27,9 +27,9 @@
     if(scope.WIZARD_AUTOSUBMIT && scope.WIZARD_MULTIPAGE) {
       scope.$watch('model', function(newValue){
         if(newValue) {
-          scope.action()
+          scope.action();
         }
-      })
+      });
     }
-  };
+  }
 }());
