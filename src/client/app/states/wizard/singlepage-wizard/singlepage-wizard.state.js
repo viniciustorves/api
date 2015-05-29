@@ -12,7 +12,7 @@
   function getStates() {
     return {
       'wizard.singlepage': {
-        controller: singlePageWizardController,
+        controller: StateController,
         controllerAs: "vm",
         resolve: {
           question: function(WizardQuestion) {
@@ -27,7 +27,7 @@
     }
   };
 
-  function singlePageWizardController($stateParams, $state, questions) {
+  function StateController($stateParams, $state, questions) {
     var vm = this;
 
     vm.answers = {};

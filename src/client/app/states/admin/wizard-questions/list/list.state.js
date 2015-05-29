@@ -16,7 +16,7 @@
       'admin.wizard-questions.list': {
         url: '', // No url, this state is the index of admin.products
         templateUrl: 'app/states/admin/wizard-questions/list/list.html',
-        controller: WizardQuestionsController,
+        controller: StateController,
         controllerAs: 'vm',
         title: 'Admin Wizard Quesiton List',
         resolve: {
@@ -37,7 +37,7 @@
   }
 
   /** @ngInject */
-  function WizardQuestionsController(questions, WizardQuestion, logger, $q, $state) {
+  function StateController(questions, WizardQuestion, logger, $q, $state) {
     var vm = this;
 
     vm.questions = questions;

@@ -12,7 +12,7 @@
   function getStates() {
     return {
       'wizard.multipage': {
-        controller: multiPageWizardController,
+        controller: StateController,
         controllerAs: "vm",
         resolve: {
           question: function(WizardQuestion) {
@@ -27,7 +27,7 @@
     }
   };
 
-  function multiPageWizardController($stateParams, question, questions, WizardQuestion, Projects) {
+  function StateController($stateParams, question, questions, WizardQuestion, Projects) {
     var vm = this;
 
     vm.nextQuestion = nextQuestion;
