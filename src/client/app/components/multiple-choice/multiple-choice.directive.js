@@ -14,7 +14,7 @@
         model: "=",
         options: "=",
       },
-      templateUrl: 'app/states/wizard/multiple_choice.html',
+      templateUrl: 'app/components/multiple-choice/multiple-choice.html',
     }
   };
 
