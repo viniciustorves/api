@@ -14,14 +14,6 @@
       'wizard.singlepage': {
         controller: StateController,
         controllerAs: 'vm',
-        resolve: {
-          question: function(WizardQuestion) {
-            return WizardQuestion.get({ id: 'first' }).$promise;
-          },
-          questions: function(WizardQuestion) {
-            return WizardQuestion.query().$promise;
-          },
-        },
         templateUrl: 'app/states/wizard/singlepage-wizard/singlepage-wizard.html',
       }
     };
