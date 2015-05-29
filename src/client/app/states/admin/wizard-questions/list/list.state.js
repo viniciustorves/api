@@ -37,7 +37,7 @@
   }
 
   /** @ngInject */
-  function StateController(questions, WizardQuestion, logger, $q, $state) {
+  function StateController(questions, WizardQuestion, logger, $q, $state, lodash) {
     var vm = this;
 
     vm.questions = questions;
@@ -45,7 +45,7 @@
     vm.createQuestion = createQuestion;
     vm.addAnswer = addAnswer;
 
-    _.each(questions, addAnswer);
+    lodash.each(questions, addAnswer);
 
     function createQuestion() {
       vm.question.wizard_answers = formatAnswers(vm.question.wizard_answers);
@@ -58,7 +58,7 @@
 
     vm.deleteQuestion = function(question) {
       question.$delete(function(question){
-        vm.questions = _.without(vm.questions, question)
+        vm.questions = lodash.without(vm.questions, question)
       });
     }
 
@@ -76,7 +76,7 @@
     }
 
     function formatAnswers(answers){
-      return _.map(answers, function(answer) {
+      return lodash.map(answers, function(answer) {
         if(typeof answer.tags_to_add === "string") {
           answer.tags_to_add = answer.tags_to_add.split(",");
         }
